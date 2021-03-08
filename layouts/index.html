@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+{{ partial "header.html" . }}
+
+<body>
+	<div class="min-h-screen bg-white">
+		{{ partial "head.html" . }}
+		<div class="py-10">
+			<header>
+				<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+					<h1 class="text-3xl font-bold leading-tight text-gray-900">
+						Posts
+					</h1>
+					{{- if isset .Site.Params "subtitle" -}}
+					<p class="text-sm italic">{{ .Site.Params.Subtitle | markdownify }}</p>
+					{{- end -}}
+				</div>
+			</header>
+			<main>
+				<div class="max-w-7xl mx-auto px-6 lg:px-8">
+					
+					<div class="posts mt-4">
+						{{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
+						{{ $paginator := .Paginate (where $pages "Params.hidden" "ne" true) }}
+						{{ range $paginator.Pages }}
+						<div class="post mb-3 pb-3">
+							<div class="post-header">
+								<div class="meta">
+									<div class="date">
+										<span class="day">{{ dateFormat "02" .Date }}</span>
+										<span class="rest">{{ if $.Site.Data.month }}{{ index $.Site.Data.month (printf
+											"%d" .Date.Month) }} {{ .Date.Year }}{{ else }}{{ dateFormat "Jan 2006"
+											.Date }}{{ end }}</span>
+									</div>
+								</div>
+								<div class="matter">
+									<h4 class="title small">
+										<a class="title small" href="{{ .RelPermalink }}">{{.Title}}{{ if .Draft }}<sup
+												class="draft-label">DRAFT</sup>{{ end }}</a>
+									</h4>
+									<span class="description">
+										{{ if isset .Params "description" }}
+										{{ .Description }}
+										{{ else if gt (countrunes .RawContent) 120 }}
+										{{ slicestr .RawContent 0 120 }}...
+										{{ else }}
+										{{ .RawContent }}
+										{{ end }}
+									</span>
+								</div>
+							</div>
+						</div>
+						<hr class="border-gray-100 border my-2 md:w-1/2"/>
+						{{ end }}
+						{{ template "partials/paginator.html" . }}
+					</div>
+				</div>
+			</main>
+		</div>
+		{{ partial "footer.html" . }}
+	</div>
+	
+</body>
+
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		{{- $title := ( .Title ) -}}
+		{{- $siteTitle := ( .Site.Title ) -}}
+		{{- if .IsHome -}}
+			<title>{{ $siteTitle }} {{ if isset .Site.Params "subtitle" }}- {{ .Site.Params.Subtitle }}{{ end }} </title>
+		{{- else -}}
+			<title>{{ $title }} - {{ $siteTitle }}</title>
+		{{- end -}}
+	
+		{{- if isset .Site.Params "favicon" -}}
+			<link rel="icon" type="image/png" href={{ .Site.Params.favicon }} />
+		{{- end -}}
+	
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		{{ with .OutputFormats.Get "rss" -}}
+			{{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+		{{ end -}}
+	
+		{{- template "_internal/schema.html" . -}}
+		{{- template "_internal/opengraph.html" . -}}
+		{{- template "_internal/twitter_cards.html" . -}}
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link
+		  href="https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald:wght@500&display=swap"
+		  rel="stylesheet"
+		/>
+		<link rel="stylesheet" type="text/css" href="/css/style.css"/>
+	
+		{{ if and (isset .Site.Params "social") (isset .Site.Params "feathericonscdn") (eq .Site.Params.featherIconsCDN true) -}}
+			<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+		{{- else if or (isset .Site.Params "social") (eq .Site.Params.mode "auto") (eq .Site.Params.mode "dark") -}}
+			<script src="{{ .Site.BaseURL }}js/feather.min.js"></script>
+		{{ end }}
+			
+		{{- if isset .Site.Params "customjs" -}}
+			{{- range .Site.Params.customJS }}<script src="{{ $.Site.BaseURL }}{{ . }}"></script>{{- end }}
+		{{- end }}
+	  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.1/dist/alpine.min.js" defer></script>
+	  
+</head>
+<body>
+	<div class="min-h-screen bg-white">
+		{{ partial "head.html" . }}
+		<div class="py-10">
+			<header>
+				<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+					<h1 class="text-3xl font-bold leading-tight text-gray-900">
+						{{ .Title }}
+					</h1>
+				</div>
+			</header>
+			<main>
+				<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
+					<div class="post">
+						<div class="pb-10">
+							{{ if ne .Date.Year 1 }}
+							<div class="meta">
+								<div class="date">
+									{{ if $.Site.Data.month }}{{ index $.Site.Data.month (printf "%d" .Date.Month) }} {{
+									dateFormat "2" .Date }}, {{ .Date.Year }}{{ else }}{{ dateFormat "Jan 2 2006" .Date
+									}}{{ end }}
+								</div>
+							</div>
+							{{ end }}
+						</div>
+
+						<div>
+							{{ .Content }}
+						</div>
+
+						<div class="tags">
+							{{ if ne .Type "page" }}
+							{{ if gt .Params.tags 0 }}
+
+							<ul class="flat list-none flex flex-wrap justify-start items-center space-x-2">
+								<li>Tags:</li>
+								{{ range .Params.tags }}
+								<li><a href="{{ " /tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
+								{{ end }}
+							</ul>
+							{{ end }}
+							{{ end }}
+						</div>
+						<hr class="border-gray-100 my-2" />
+						<div class="share">
+							
+							<div class="border-b border-gray-300 pb-4 mb-10" v-pre>
+								<!-- AddToAny BEGIN -->
+								<div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+								<a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+								<a class="a2a_button_facebook"></a>
+								<a class="a2a_button_twitter"></a>
+								<a class="a2a_button_email"></a>
+								<a class="a2a_button_reddit"></a>
+								<a class="a2a_button_pocket"></a>
+								<a class="a2a_button_print"></a>
+								</div>
+								<script async src="https://static.addtoany.com/menu/page.js"></script>
+								<!-- AddToAny END -->
+						
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+		{{ partial "footer.html" . }}
+	</div>
+</body>
+
+</html>

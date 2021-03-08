@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1, h2, h3, h4, h5 {
+	font-family: 'Oswald', sans-serif;
+}
+
+body {
+	font-family: 'Montserrat', sans-serif;
+}
+
+.post a {
+	@apply text-blue-500 font-medium;
+}
+
+.highlight {
+	@apply p-4 bg-gray-100 rounded-md overflow-x-auto max-w-full mb-2;
+}
+
+.highlight pre {
+	background-color: inherit!important;
+	@apply mb-2;
+}
+
+ol {
+	@apply my-2 list-decimal pl-5;
+}
+
+.post ul {
+	@apply my-2 pl-5 list-disc;
+}
+
+li {
+	@apply my-2;
+}
+
+.post p {
+	@apply mb-2;
+}
+
+h1 {
+    @apply text-2xl mb-2;
+}
+
+h2 {
+    @apply text-xl mb-2;
+}
+
+h3 {
+    @apply text-lg mb-2;
+}
+
+.title a {
+	@apply text-black;
+}

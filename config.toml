@@ -1,0 +1,68 @@
+baseURL = "https://davidhallin.com/"
+languageCode = "en-us"
+title = "davidhallin.com"
+paginate = 10
+
+copyright = "© David Hallin"
+
+pygmentsstyle = "vs"
+pygmentscodefences = true
+pygmentscodefencesguesssyntax = true
+
+googleAnalytics = ""
+
+[params]
+	subtitle = "a blog by david hallin about programming, learning new things, and running a business"
+
+	avatar = "/images/dave.jpeg"
+	
+	featherIconsCDN = true
+	favicon = "favicon.ico"
+	mode = "auto" # "dark" or "auto"
+	
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+# Nav.
+[[menu.main]]
+name = "Home"
+url = "/"
+weight = 1
+
+[[menu.main]]
+name = "About"
+url = "/about"
+weight = 3
+
+[[menu.main]]
+name = "Tags"
+url = "/tags"
+weight = 4
+
+[[params.social]]
+name = "Github"
+icon = "github"
+url = "https://github.com/hallindavid"
+
+[[params.social]]
+name = "Twitter"
+icon = "twitter"
+url = "https://twitter.com/david_hallin"
+
+[[params.social]]
+name = "Youtube"
+icon = "youtube"
+url = "https://youtube.com/c/DavidHallin"
+
+[[params.social]]
+name = "RSS"
+icon = "rss"
+url = "/index.xml"
+
+[taxonomies]
+   tag = "tags"
+
+PygmentsCodeFences = true
+PygmentsStyle = "monokai"
