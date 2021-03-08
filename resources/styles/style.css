@@ -35,7 +35,7 @@ li {
 	@apply my-2;
 }
 
-.post p {
+.post>p {
 	@apply mb-8;
 }
 
