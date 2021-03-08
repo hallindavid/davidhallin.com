@@ -1,52 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    {{- $title := ( .Title ) -}}
-    {{- $siteTitle := ( .Site.Title ) -}}
-    {{- if .IsHome -}}
-    <title>{{ $siteTitle }} {{ if isset .Site.Params "subtitle" }}- {{ .Site.Params.Subtitle }}{{ end }} </title>
-    {{- else -}}
-    <title>{{ $title }} - {{ $siteTitle }}</title>
-    {{- end -}}
-
-    {{- if isset .Site.Params "favicon" -}}
-    <link rel="icon" type="image/png" href={{ .Site.Params.favicon }}/>
-    {{- end -}}
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    {{ with .OutputFormats.Get "rss" -}}
-    {{ printf `
-    <link rel="%s" type="%s" href="%s" title="%s"/>
-    ` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
-    {{ end -}}
-
-    {{- template "_internal/schema.html" . -}}
-    {{- template "_internal/opengraph.html" . -}}
-    {{- template "_internal/twitter_cards.html" . -}}
-    <link rel="preconnect" href="https://fonts.gstatic.com"/>
-    <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald:wght@500&display=swap"
-            rel="stylesheet"
-    />
-    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
-
-    {{ if and (isset .Site.Params "social") (isset .Site.Params "feathericonscdn") (eq .Site.Params.featherIconsCDN
-    true) -}}
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    {{- else if or (isset .Site.Params "social") (eq .Site.Params.mode "auto") (eq .Site.Params.mode "dark") -}}
-    <script src="{{ .Site.BaseURL }}js/feather.min.js"></script>
-    {{ end }}
-
-    {{- if isset .Site.Params "customjs" -}}
-    {{- range .Site.Params.customJS }}
-    <script src="{{ $.Site.BaseURL }}{{ . }}"></script>
-    {{- end }}
-    {{- end }}
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.1/dist/alpine.min.js" defer></script>
-
-</head>
+{{ partial "header.html" . }}
 <body>
 <div class="min-h-screen bg-white">
     {{ partial "head.html" . }}
@@ -63,8 +17,8 @@
         </header>
         <main>
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
                 <div class="post">
+                    {{ if ne .Type "project" }}
                     <div class="pb-10">
                         {{ if ne .Date.Year 1 }}
                         <div class="meta">
@@ -76,9 +30,44 @@
                         </div>
                         {{ end }}
                     </div>
+                    {{ end }}
+
+                    {{ if eq .Type "project" }}
+                    <hr class="border-gray-100 my-2"/>
+                    <!-- buttons -->
+                    <div class="flex flex-row space-x-2 my-2">
+                        {{ if ne .Params.repolink "" }}
+                        <a href="{{ .Params.repolink }}" target="_blank" class="button"><i class="fab fa-github"></i> Git Repo</a>
+                        {{ end }}
+                        {{ if ne .Params.demolink "" }}
+                        <a href="{{ .Params.demolink }}" target="_blank" class="button">Demo</a>
+                        {{ end }}
+                        {{ if ne .Params.bloglink "" }}
+                        <a href="{{ .Params.bloglink }}" target="_blank" class="button">View Post</a>
+                        {{ end }}
+                    </div>
+                    {{ end }}
+                    <hr class="border-gray-100 my-2"/>
                     {{ .Content }}
                 </div>
 
+                {{ if eq .Type "project" }}
+                    <hr class="border-gray-100 my-2"/>
+                    <!-- buttons -->
+                    <div class="flex flex-row space-x-2 mb-2">
+                        {{ if ne .Params.repolink "" }}
+                        <a href="{{ .Params.repolink }}" target="_blank" class="button"><i class="fab fa-github"></i> Git Repo</a>
+                        {{ end }}
+                        {{ if ne .Params.demolink "" }}
+                        <a href="{{ .Params.demolink }}" target="_blank" class="button">Demo</a>
+                        {{ end }}
+                        {{ if ne .Params.bloglink "" }}
+                        <a href="{{ .Params.bloglink }}" target="_blank" class="button">View Post</a>
+                        {{ end }}
+                    </div>
+                    {{ end }}
+
+                <hr class="border-gray-100 my-2"/>
                 <div class="tags">
                     {{ if ne .Type "page" }}
                     {{ if gt .Params.tags 0 }}

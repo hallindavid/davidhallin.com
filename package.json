@@ -9,7 +9,7 @@
     "deploy": "npm run prod && hugo --gc --minify"
   },
   "keywords": [],
-  "author": "",
+  "author": "David Hallin",
   "license": "ISC",
   "dependencies": {
     "@tailwindcss/aspect-ratio": "^0.2.0",

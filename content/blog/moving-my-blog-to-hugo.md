@@ -70,4 +70,7 @@ move to Netlify - so I did that as well.
 
 ## Wrapping up
 Doing some of this stuff got me closer to my code, and removed a lot of the *magic* from the build process which has been good.
+I'm going to start a template file which has this code setup automatically, and then people can dump their tailwind code into this hugo repository.
+
+I'll post a link to it on the projects page.
 

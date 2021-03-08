@@ -6,7 +6,6 @@
 	<div class="min-h-screen bg-white">
 		{{ partial "head.html" . }}
 
-
 		<div class="py-10">
 			{{ if isset .Data "Term" }}
 			<header>
@@ -39,6 +38,7 @@
 						{{- else -}}
 						<li class="mb-4">
 							<div class="post-header">
+								{{ if ne .Type "project" }}
 								<div class="meta">
 									<div class="date">
 										<span class="day">{{ dateFormat "02" .Date }}</span>
@@ -47,10 +47,12 @@
 											.Date }}{{ end }}</span>
 									</div>
 								</div>
+								{{ end }}
 								<div class="matter">
 									<h4 class="title small">
-										<a href="{{ .RelPermalink }}">{{.Title}}{{ if .Draft }}<sup
-												class="draft-label">DRAFT</sup>{{ end }}</a>
+										<a href="{{ .RelPermalink }}">{{.Title}}
+											{{ if .Draft }}<sup class="draft-label">DRAFT</sup>{{ end }}
+										</a>
 									</h4>
 									<span class="description">
 										{{ if isset .Params "description" }}

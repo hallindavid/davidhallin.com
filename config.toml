@@ -17,7 +17,7 @@ googleAnalytics = ""
 	avatar = "/images/dave.jpeg"
 	
 	featherIconsCDN = true
-	favicon = "favicon.ico"
+	favicon = "/favicon.ico"
 	mode = "auto" # "dark" or "auto"
 	
 [markup]
@@ -25,21 +25,28 @@ googleAnalytics = ""
     [markup.goldmark.renderer]
       unsafe = true
 
+
 # Nav.
-[[menu.main]]
-name = "Home"
-url = "/"
-weight = 1
+[menu]
+    [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
 
-[[menu.main]]
-name = "About"
-url = "/about"
-weight = 3
+    [[menu.main]]
+    name = "Projects"
+    url = "/projects/"
+    weight = 2
 
-[[menu.main]]
-name = "Tags"
-url = "/tags"
-weight = 4
+    [[menu.main]]
+    name = "Tags"
+    url = "/tags/"
+    weight = 3
+
+    [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 4
 
 [[params.social]]
 name = "Github"

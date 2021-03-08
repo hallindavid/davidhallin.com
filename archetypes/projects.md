@@ -3,6 +3,8 @@ title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
 description: ""
 tags: []
-draft: true
-type: "post"
+type: "project"
+repolink: ""
+demolink: ""
+bloglink: ""
 ---

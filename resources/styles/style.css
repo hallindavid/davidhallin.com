@@ -1,5 +1,11 @@
 @tailwind base;
 @tailwind components;
+
+.button {
+	@apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500;
+}
+
+
 @tailwind utilities;
 
 h1, h2, h3, h4, h5 {
@@ -10,7 +16,7 @@ body {
 	font-family: 'Montserrat', sans-serif;
 }
 
-.post a {
+.post>p>a {
 	@apply text-blue-500 font-medium;
 }
 
@@ -52,5 +58,5 @@ h3 {
 }
 
 .title a {
-	@apply text-black;
+	@apply text-gray-900;
 }
