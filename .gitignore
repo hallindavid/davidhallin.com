@@ -3,3 +3,5 @@ public
 .node_modules/*
 .node_modules
 static/css/style.css
+node_modules
+node_modules/*
