@@ -3,7 +3,7 @@ title: "Switching this site to Hugo"
 date: 2021-03-08T06:43:17-05:00
 description: "I'm moving my blog from Jigsaw over to Hugo"
 tags: ["php", "go","static site generator", "hugo", "jigsaw"]
-draft: true
+draft: false
 ---
 # TLDR
 I am switching my blog from <a href="https://jigsaw.tighten.co/">Jigsaw</a> to <a href="https://gohugo.io">Hugo</a>
