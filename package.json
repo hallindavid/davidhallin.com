@@ -6,7 +6,8 @@
   "scripts": {
     "build": "postcss ./resources/styles/style.css -o ./static/css/style.css",
     "prod": "NODE_ENV=production postcss ./resources/styles/style.css -o ./static/css/style.css",
-    "deploy": "npm run prod && hugo --gc --minify"
+    "deploy": "npm run prod && hugo --gc --minify",
+    "watch": "npm run build && hugo server -D"
   },
   "keywords": [],
   "author": "David Hallin",
