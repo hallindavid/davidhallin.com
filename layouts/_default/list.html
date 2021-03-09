@@ -4,7 +4,7 @@
 
 <body>
 	<div class="min-h-screen bg-white">
-		{{ partial "head.html" . }}
+		{{ partial "nav.html" . }}
 
 		<div class="py-10">
 			{{ if isset .Data "Term" }}
@@ -50,7 +50,9 @@
 								{{ end }}
 								<div class="matter">
 									<h4 class="title small">
-										<a href="{{ .RelPermalink }}">{{.Title}}
+										<a href="{{ .RelPermalink }}">
+											{{ if eq .Type "worklog" }}<span class="text-gray-800 italic">WORKLOG:</span> {{ end }}
+											{{.Title}}
 											{{ if .Draft }}<sup class="draft-label">DRAFT</sup>{{ end }}
 										</a>
 									</h4>

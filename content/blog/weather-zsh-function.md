@@ -2,7 +2,7 @@
 title: the weather zsh terminal function
 date: 2020-12-02
 description: get a weather report in terminal
-draft: true
+draft: false
 tags: [general]
 ---
 

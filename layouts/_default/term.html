@@ -4,7 +4,7 @@
 
 <body>
 	<div class="min-h-screen bg-white">
-		{{ partial "head.html" . }}
+		{{ partial "nav.html" . }}
 
 		<div class="py-10">
 
@@ -34,7 +34,10 @@
 									</div>
 									<div class="matter">
 										<h4 class="title small">
-											<a href="{{ .RelPermalink }}">{{ if eq .Type "project" }}<span class="text-gray-800 italic">PROJECT:</span> {{ end }}{{.Title}}{{ if .Draft }}<sup
+											<a href="{{ .RelPermalink }}">
+												{{ if eq .Type "project" }}<span class="text-gray-800 italic">PROJECT:</span> {{ end }}
+												{{ if eq .Type "worklog" }}<span class="text-gray-800 italic">WORKLOG:</span> {{ end }}
+												{{.Title}}{{ if .Draft }}<sup
 													class="draft-label">DRAFT</sup>{{ end }}</a>
 										</h4>
 										<span class="description">

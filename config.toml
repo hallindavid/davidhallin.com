@@ -39,14 +39,19 @@ googleAnalytics = ""
     weight = 2
 
     [[menu.main]]
-    name = "Tags"
-    url = "/tags/"
+    name = "Worklog"
+    url = "/worklog/"
     weight = 3
 
     [[menu.main]]
-    name = "About"
-    url = "/about/"
+    name = "Tags"
+    url = "/tags/"
     weight = 4
+
+    [[menu.main]]
+    name = "Who?"
+    url = "/about/"
+    weight = 5
 
 [[params.social]]
 name = "Github"

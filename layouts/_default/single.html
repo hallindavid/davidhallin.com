@@ -3,7 +3,7 @@
 {{ partial "header.html" . }}
 <body>
 <div class="min-h-screen bg-white">
-    {{ partial "head.html" . }}
+    {{ partial "nav.html" . }}
     <div class="py-10">
         <header>
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -19,14 +19,19 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="post">
                     {{ if ne .Type "project" }}
-                    <div class="pb-10">
+                    <div class="pb-4">
                         {{ if ne .Date.Year 1 }}
                         <div class="meta">
-                            <div class="date">
+                            <div class="date inline">
                                 {{ if $.Site.Data.month }}{{ index $.Site.Data.month (printf "%d" .Date.Month) }} {{
                                 dateFormat "2" .Date }}, {{ .Date.Year }}{{ else }}{{ dateFormat "Jan 2 2006" .Date
                                 }}{{ end }}
                             </div>
+                            {{ if eq .Type "worklog" }}
+                            <div class="inline ml-3">plan: {{ .Params.planningTime }}</div>
+                            <div class="inline ml-3">build: {{ .Params.devTime }}</div>
+                            <div class="inline ml-3">total: {{ .Params.totalTime }}</div>
+                            {{ end }}
                         </div>
                         {{ end }}
                     </div>
