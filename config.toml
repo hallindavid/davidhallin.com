@@ -54,6 +54,11 @@ googleAnalytics = ""
     weight = 5
 
 [[params.social]]
+name = "Hey World"
+icon = "at-sign"
+url = "https://world.hey.com/davidhallin/"
+
+[[params.social]]
 name = "Github"
 icon = "github"
 url = "https://github.com/hallindavid"
