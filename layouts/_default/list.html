@@ -9,7 +9,7 @@
 		<div class="py-10">
 			{{ if isset .Data "Term" }}
 			<header>
-				<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="max-w-7xl mx-auto px-4 lg:px-8">
 					<h1 class="text-3xl font-bold leading-tight text-gray-900">
 						{{ .Data.Term }}
 					</h1>
@@ -20,7 +20,7 @@
 			</header>
 			{{ else }}
 			<header>
-				<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="max-w-7xl mx-auto px-4 lg:px-8">
 					<h1 class="text-3xl font-bold leading-tight text-gray-900">
 						{{ .Name }}
 					</h1>
@@ -28,8 +28,7 @@
 			</header>
 			{{ end }}
 			<main>
-				<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
+				<div class="max-w-7xl mx-auto px-4 lg:px-8">
 					{{ .Content }}
 
 					<ul class="posts mt-4">

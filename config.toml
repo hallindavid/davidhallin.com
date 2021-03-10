@@ -53,9 +53,9 @@ googleAnalytics = ""
     url = "/about/"
     weight = 5
 
-[[params.social]]
+[[params.links]]
 name = "Hey World"
-icon = "at-sign"
+image = "/images/hey-logo.png"
 url = "https://world.hey.com/davidhallin/"
 
 [[params.social]]
