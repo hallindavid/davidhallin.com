@@ -85,16 +85,16 @@ So if we wanted a list of our users who have been verified the longest to shorte
 ## Solution
 
 ```php
-    // email_verified_at oldest to newest, with nulls last
-    App\User::orderByRaw("CASE WHEN email_verified_at IS NULL THEN 0 ELSE 1 END DESC")->orderBy('email_verified_at','DESC')->get()->toArray();
-
     // email_verified_at newest to oldest, with nulls last
-    App\User::orderByRaw("CASE WHEN email_verified_at IS NULL THEN 0 ELSE 1 END DESC")->orderBy('email_verified_at', 'ASC')->get()->toArray();
+    App\User::orderByRaw("CASE WHEN email_verified_at IS NULL THEN 0 ELSE 1 END DESC")->orderBy('email_verified_at','DESC')->get()->toArray();
 
     // email_verified_at newest to oldest, with nulls first
     App\User::orderByRaw("CASE WHEN email_verified_at IS NULL THEN 0 ELSE 1 END ASC")->orderBy('email_verified_at', 'DESC')->get()->toArray();
 
-    // email_verified_at newest to oldest, with nulls first
+    // email_verified_at oldest to newest, with nulls last
+    App\User::orderByRaw("CASE WHEN email_verified_at IS NULL THEN 0 ELSE 1 END DESC")->orderBy('email_verified_at', 'ASC')->get()->toArray();
+
+    // email_verified_at oldest to newest, with nulls first
     App\User::orderByRaw("CASE WHEN email_verified_at IS NULL THEN 0 ELSE 1 END ASC")->orderBy('email_verified_at', 'ASC')->get()->toArray();
 ```
 
