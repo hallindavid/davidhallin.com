@@ -1,5 +1,5 @@
 ---
-title: "Tool Belt"
+title: "tool belt"
 type: "page"
 ---
 

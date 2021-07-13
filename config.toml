@@ -29,27 +29,27 @@ googleAnalytics = ""
 # Nav.
 [menu]
     [[menu.main]]
-    name = "Home"
+    name = "home"
     url = "/"
     weight = 1
 
     [[menu.main]]
-    name = "Projects"
+    name = "projects"
     url = "/projects/"
     weight = 2
 
     [[menu.main]]
-    name = "Worklog"
+    name = "worklog"
     url = "/worklog/"
     weight = 3
 
     [[menu.main]]
-    name = "Tags"
+    name = "tags"
     url = "/tags/"
     weight = 4
 
     [[menu.main]]
-    name = "Who?"
+    name = "about"
     url = "/about/"
     weight = 5
 
