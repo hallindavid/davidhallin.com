@@ -69,11 +69,6 @@ icon = "twitter"
 url = "https://twitter.com/david_hallin"
 
 [[params.social]]
-name = "Youtube"
-icon = "youtube"
-url = "https://youtube.com/c/DavidHallin"
-
-[[params.social]]
 name = "RSS"
 icon = "rss"
 url = "/index.xml"
