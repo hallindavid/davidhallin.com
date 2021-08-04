@@ -53,11 +53,6 @@ googleAnalytics = ""
     url = "/about/"
     weight = 5
 
-[[params.links]]
-name = "Hey World"
-image = "/images/hey-logo.png"
-url = "https://world.hey.com/davidhallin/"
-
 [[params.social]]
 name = "Github"
 icon = "github"
