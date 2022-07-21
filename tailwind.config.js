@@ -1,11 +1,9 @@
 module.exports = {
-  purge: {
     content: [
         './layouts/**/*.html',
         './content/**/*.md'
-    ]
-  },
-  darkMode: false, // or 'media' or 'class'
+    ],
+  darkMode: 'media', // or 'media' or 'class'
   theme: {
     extend: {
       fontFamily: {
