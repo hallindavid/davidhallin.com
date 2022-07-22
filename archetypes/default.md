@@ -4,5 +4,4 @@ date: {{ .Date }}
 description: ""
 tags: []
 draft: true
-type: "post"
 ---

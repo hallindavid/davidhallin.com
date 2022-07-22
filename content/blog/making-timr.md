@@ -2,7 +2,7 @@
 title: "making timr"
 date: 2022-07-21T09:38:56-04:00
 description: "The what and why for building timr - an open source time tracking tool built with Laravel Zero"
-tags: [php]
+tags: ["php", "laravel"]
 draft: false
 ---
 
