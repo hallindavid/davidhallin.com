@@ -82,6 +82,6 @@ h3 {
 	@apply border-b;
 }
 
-a {
+a.nice_link {
 	@apply font-medium text-blue-500;
 }

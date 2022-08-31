@@ -295,7 +295,7 @@ Right away, we should add columns for `unit_number`, `street_number`, `street`, 
         <td>No. 37 422 Wilson Streets&#44; Nienowmouth&#44; Arkansas</td>
     </tr>
 </table>
-<span class="italic">Note - this data was randomly generated using <a class="" href="https://github.com/FakerPHP/Faker">Faker</a></span>
+<span class="italic">Note - this data was randomly generated using <a class="nice_link" href="https://github.com/FakerPHP/Faker">Faker</a></span>
 <br /><br />
 
 ```SQL
@@ -587,8 +587,8 @@ So here is our end result
 # special notes about MySQL and REGEX
 
 - These functions above are all MySQL 8 functions, MySQL 5.7 doesn't have nearly this kind of functionality.
-- To see the MySQL 8 docs for Regular Expressions, check them out here: <a href="https://dev.mysql.com/doc/refman/8.0/en/regexp.html">https://dev.mysql.com/doc/refman/8.0/en/regexp.html</a>
-- To see the MySQL 5.7 docs for Regular Expressions, check them out here: <a href="https://dev.mysql.com/doc/refman/5.7/en/regexp.html">https://dev.mysql.com/doc/refman/5.7/en/regexp.html</a>
+- To see the MySQL 8 docs for Regular Expressions, check them out here: <a class="nice_link" href="https://dev.mysql.com/doc/refman/8.0/en/regexp.html">https://dev.mysql.com/doc/refman/8.0/en/regexp.html</a>
+- To see the MySQL 5.7 docs for Regular Expressions, check them out here: <a class="nice_link" href="https://dev.mysql.com/doc/refman/5.7/en/regexp.html">https://dev.mysql.com/doc/refman/5.7/en/regexp.html</a>
 - Even though MySQL 8 has way better functionality, it's still not compatible with all regular expression formulas, for instance in php I'm able to do use `\d` as any digit, and `\D` as anything but a digit, where MySQL does not seem to be compatible with these methods, instead you have to do things like `[0-9]` and `^0-9`
 
 <br />
@@ -597,11 +597,11 @@ So here is our end result
 
 # useful REGEX tools
 
-<a href="https://regex-vis.com/?r=%28%28unit%7Capt%7Cno%29%7B1%2C2%7D%5B0-9%5D%2B%28%5C%2C%29*%28%5C+%29*%29%2B&e=0" target="_blank">Regex-Vis</a> is a really nice visualizer tool for REGEX statements
+<a class="nice_link" href="https://regex-vis.com/?r=%28%28unit%7Capt%7Cno%29%7B1%2C2%7D%5B0-9%5D%2B%28%5C%2C%29*%28%5C+%29*%29%2B&e=0" target="_blank">Regex-Vis</a> is a really nice visualizer tool for REGEX statements
 <br /><br />
-<a href="https://regexr.com/" target="_blank">RegExr</a> is a great way of testing regular expressions against bodies of text
+<a class="nice_link" href="https://regexr.com/" target="_blank">RegExr</a> is a great way of testing regular expressions against bodies of text
 <br /><br />
-<a href="https://desktopappswithelectron.com/" target="_blank">Desktop Apps With Electron</a> is a video course that Beyond Code put out a few years back that shows people how create desktop apps with Electron.  One of the things that they show you how to do is basically programming your own Regex-Vis.  Playing with it like this can supercharge your understanding of regular expressions
+<a class="nice_link" href="https://desktopappswithelectron.com/" target="_blank">Desktop Apps With Electron</a> is a video course that Beyond Code put out a few years back that shows people how create desktop apps with Electron.  One of the things that they show you how to do is basically programming your own Regex-Vis.  Playing with it like this can supercharge your understanding of regular expressions
 
 
 # feedback / requests ?
