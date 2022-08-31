@@ -60,3 +60,28 @@ h3 {
 .title a {
 	@apply text-gray-900;
 }
+
+
+.table-bordered {
+	@apply border text-center;
+}
+
+.table-bordered thead {
+	@apply border-b;
+}
+
+.table-bordered th {
+	@apply text-sm font-bold text-gray-900 px-3 py-2 border-r;
+}
+
+.table-bordered td {
+	@apply text-sm text-gray-900 font-light px-3 py-2 border-r whitespace-nowrap;
+}
+
+.table-bordered tr {
+	@apply border-b;
+}
+
+a {
+	@apply font-medium text-blue-500;
+}
