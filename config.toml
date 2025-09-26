@@ -1,7 +1,7 @@
 baseURL = "https://davidhallin.com/"
 languageCode = "en-us"
 title = "davidhallin.com"
-paginate = 10
+paginate = 20
 
 copyright = "© David Hallin"
 
@@ -52,11 +52,6 @@ googleAnalytics = ""
 name = "Github"
 icon = "github"
 url = "https://github.com/hallindavid"
-
-[[params.social]]
-name = "Twitter"
-icon = "twitter"
-url = "https://twitter.com/david_hallin"
 
 [[params.social]]
 name = "RSS"
