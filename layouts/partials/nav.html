@@ -3,7 +3,7 @@
 		<div class="flex justify-between h-24">
 			<div class="flex">
 				{{ if .Site.Params.Avatar }}
-				<a href="{{ .Site.BaseURL }}" class="flex-shrink-0 flex items-center space-x-4">
+				<a href="{{ .Site.BaseURL }}" class="shrink-0 flex items-center space-x-4">
 					<img class="h-16 w-auto rounded-full" src="{{ .Site.Params.Avatar | safeURL }}" alt="{{ .Site.Title }}">
 					<h1 class="site-title text-2xl">{{ .Site.Title }}</h1>
 				</a>
@@ -19,25 +19,24 @@
 			</div>
 			<div class="hidden sm:ml-6 sm:flex sm:items-center space-x-2">
 				{{- range $index, $key := .Site.Params.Links -}}
-				<a class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+				<a class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
 					href="{{ $key.url }}" title="{{ $key.icon }}">
 					<img src="{{ $key.image }}" class="h-4"/>
 				</a>
 				{{- end -}}
 				{{- range $index, $key := .Site.Params.Social -}}
-				<a class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+				<a class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
 					href="{{ $key.url }}" title="{{ $key.name }}">
 					<i class="h-4 w-4" data-feather="{{ $key.icon }}"></i>
 				</a>
 				{{- end -}}
 				{{- if or (eq .Site.Params.mode "auto") (eq .Site.Params.mode "dark") -}}
-				<a class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-					class="scheme-toggle" id="scheme-toggle"></a>
+				<a class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 scheme-toggle" id="scheme-toggle"></a>
 				{{- end -}}
 			</div>
 			<div class="-mr-2 flex items-center sm:hidden">
 				<button type="button" @click="menuOpen=!menuOpen"
-					class="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+					class="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
 					aria-controls="mobile-menu" aria-expanded="false">
 					<span class="sr-only">Open main menu</span>
 					<svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
