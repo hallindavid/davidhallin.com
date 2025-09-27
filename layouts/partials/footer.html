@@ -1,9 +1,10 @@
 <footer class="fixed bottom-0 left-0 right-0 bg-retro-button border-t-2 border-retro-border shadow-retro">
-	<div class="h-10 flex items-center justify-end px-4">
-		<div class="flex items-center space-x-4 font-mono text-sm">
-			<span>{{ dateFormat "2006" now }} {{ with .Site.Copyright }} {{ . | safeHTML }} | {{ end }}</span>
-			<span>Powered by Hugo</span>
-			<span class="border-l-2 border-retro-border h-6"></span>
+	<div class="h-10 flex items-center justify-end px-2 sm:px-4">
+		<div class="flex items-center space-x-2 sm:space-x-4 font-mono text-xs sm:text-sm">
+			<span class="hidden sm:inline">{{ dateFormat "2006" now }} {{ with .Site.Copyright }} {{ . | safeHTML }} | {{ end }}</span>
+			<span class="hidden sm:inline">Powered by Hugo</span>
+			<span class="sm:hidden">{{ dateFormat "2006" now }} {{ with .Site.Copyright }} {{ . | safeHTML }} {{ end }}</span>
+			<span class="hidden sm:block border-l-2 border-retro-border h-6"></span>
 			<span id="clock" class="font-bold">--:--</span>
 		</div>
 	</div>

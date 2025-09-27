@@ -132,3 +132,7 @@ h3 {
 a.nice_link {
     @apply font-medium text-blue-500;
 }
+
+.site-title {
+    @apply text-sm md:text-xl;
+}
