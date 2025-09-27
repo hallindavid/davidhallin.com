@@ -76,6 +76,10 @@ ol {
     @apply bg-retro-post;
 }
 
+.post > *:not(hr) {
+    @apply px-4;
+}
+
 .post ul {
     @apply my-2 pl-5 list-disc;
 }
