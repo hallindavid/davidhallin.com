@@ -2,77 +2,70 @@
 <html>
 {{ partial "header.html" . }}
 
-<body>
-	<div class="min-h-screen bg-white">
+<body class="bg-retro-bg">
+	<div class="min-h-screen pb-16">
 		{{ partial "nav.html" . }}
+		<main>
+			<div class="mx-4">
+				<div class="retro-window">
+					<div class="retro-titlebar">
+						<span class="font-bold">
+							{{ if isset .Data "Term" }}
+								{{ .Data.Term }}
+							{{ else }}
+								{{ .Name }}
+							{{ end }}
+						</span>
+					</div>
+					<div class="p-4">
+						{{- if and (not (isset .Data "Term")) (isset .Site.Params "subtitle") -}}
+						<p class="text-sm mb-4 font-mono">{{ .Site.Params.Subtitle | markdownify }}</p>
+						{{- end -}}
+						{{ .Content }}
 
-		<div class="py-10">
-			{{ if isset .Data "Term" }}
-			<header>
-				<div class="max-w-7xl mx-auto px-4 lg:px-8">
-					<h1 class="text-3xl font-bold leading-tight text-gray-900 lowercase">
-						{{ .Data.Term }}
-					</h1>
-					{{- if isset .Site.Params "subtitle" -}}
-					<p>{{ .Site.Params.Subtitle | markdownify }}</p>
-					{{- end -}}
-				</div>
-			</header>
-			{{ else }}
-			<header>
-				<div class="max-w-7xl mx-auto px-4 lg:px-8">
-					<h1 class="text-3xl font-bold leading-tight text-gray-900 lowercase">
-						{{ .Name }}
-					</h1>
-				</div>
-			</header>
-			{{ end }}
-			<main>
-				<div class="max-w-7xl mx-auto px-4 lg:px-8">
-					{{ .Content }}
-
-					<ul class="posts mt-4">
-						{{- range .Data.Pages -}}
-						{{- if (in (.Site.Params.excludedTypes | default (slice "page")) .Type) -}}
-						{{- else -}}
-						<li class="mb-4">
-							<div class="post-header">
-								{{ if ne .Type "project" }}
-								<div class="meta">
-									<div class="date">
-										<span class="day">{{ dateFormat "02" .Date }}</span>
-										<span class="rest">{{ if $.Site.Data.month }}{{ index $.Site.Data.month (printf
-											"%d" .Date.Month) }} {{ .Date.Year }}{{ else }}{{ dateFormat "Jan 2006"
-											.Date }}{{ end }}</span>
+						<div class="posts">
+							{{- range .Data.Pages -}}
+							{{- if (in (.Site.Params.excludedTypes | default (slice "page")) .Type) -}}
+							{{- else -}}
+							<div class="post mb-4 p-3 border-2 border-retro-border shadow-retro-button hover:shadow-retro">
+								<div class="post-header flex items-start space-x-4">
+									{{ if ne .Type "project" }}
+									<div class="meta">
+										<div class="date text-sm font-mono">
+											<span class="block font-bold">{{ dateFormat "02" .Date }}</span>
+											<span class="block text-xs">{{ if $.Site.Data.month }}{{ index $.Site.Data.month (printf
+												"%d" .Date.Month) }} {{ .Date.Year }}{{ else }}{{ dateFormat "Jan 2006"
+												.Date }}{{ end }}</span>
+										</div>
+									</div>
+									{{ end }}
+									<div class="matter flex-1">
+										<h4 class="title text-lg font-bold mb-1">
+											<a class="retro-link" href="{{ .RelPermalink }}">
+												{{ if eq .Type "worklog" }}<span class="text-gray-600 italic">WORKLOG:</span> {{ end }}
+												{{.Title}}
+												{{ if .Draft }}<sup class="text-red-600">[DRAFT]</sup>{{ end }}
+											</a>
+										</h4>
+										<span class="description text-sm font-mono">
+											{{ if isset .Params "description" }}
+											{{ .Description }}
+											{{ else if gt (countrunes .RawContent) 120 }}
+											{{ slicestr .RawContent 0 120 }}...
+											{{ else }}
+											{{ .RawContent }}
+											{{ end }}
+										</span>
 									</div>
 								</div>
-								{{ end }}
-								<div class="matter">
-									<h4 class="title small">
-										<a href="{{ .RelPermalink }}">
-											{{ if eq .Type "worklog" }}<span class="text-gray-800 italic">WORKLOG:</span> {{ end }}
-											{{.Title}}
-											{{ if .Draft }}<sup class="draft-label">DRAFT</sup>{{ end }}
-										</a>
-									</h4>
-									<span class="description">
-										{{ if isset .Params "description" }}
-										{{ .Description }}
-										{{ else if gt (countrunes .RawContent) 120 }}
-										{{ slicestr .RawContent 0 120 }}...
-										{{ else }}
-										{{ .RawContent }}
-										{{ end }}
-									</span>
-								</div>
 							</div>
-						</li>
-						{{- end -}}
-						{{- end -}}
-					</ul>
+							{{- end -}}
+							{{- end -}}
+						</div>
+					</div>
 				</div>
-			</main>
-		</div>
+			</div>
+		</main>
 		{{ partial "footer.html" . }}
 	</div>
 </body>

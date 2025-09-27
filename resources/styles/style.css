@@ -11,56 +11,81 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
-  }
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentcolor);
+    }
 }
 
 @layer components {
-  .button {
-    @apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-xs text-white bg-gray-800 hover:bg-gray-700 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-gray-500;
-  }
+    .button {
+        @apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-xs text-white bg-gray-800 hover:bg-gray-700 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-gray-500;
+    }
+
+    .retro-window {
+        @apply bg-retro-window border-2 border-retro-border shadow-retro;
+    }
+
+    .retro-titlebar {
+        @apply bg-retro-titlebar text-retro-titletext px-2 py-1 font-pixel text-sm flex items-center justify-between h-titlebar;
+    }
+
+    .retro-button {
+        @apply bg-retro-button border-2 border-retro-border shadow-retro px-3 py-1 font-mono text-sm hover:bg-retro-buttonhover active:shadow-retro-inset active:translate-x-px active:translate-y-px;
+    }
+
+    .retro-input {
+        @apply bg-white border-2 border-retro-border shadow-retro-inset px-2 py-1 font-mono text-sm;
+    }
+
+    .retro-link {
+        @apply text-retro-highlight underline font-mono transition-all duration-150 hover:font-bold hover:tracking-wide hover:text-black;
+    }
 }
 
 h1, h2, h3, h4, h5 {
-	font-family: 'Oswald', sans-serif;
+    font-family: 'Courier New', monospace;
 }
 
 body {
-	font-family: 'Montserrat', sans-serif;
+    font-family: 'Courier New', monospace;
+    background-color: #c0c0c0;
 }
 
-.post>p>a {
-	@apply text-blue-500 font-medium;
+.post > p > a {
+    @apply text-blue-500 font-medium;
 }
 
 .highlight {
-	@apply p-4 bg-gray-100 rounded-md overflow-x-auto max-w-full mb-2;
+    @apply p-4 bg-gray-100 rounded-md overflow-x-auto max-w-full mb-2;
 }
 
 .highlight pre {
-	background-color: inherit!important;
-	@apply mb-2;
+    background-color: inherit !important;
+    @apply mb-2;
 }
 
 ol {
-	@apply my-2 list-decimal pl-5;
+    @apply my-2 list-decimal pl-5;
+}
+
+.post {
+    @apply bg-retro-post;
 }
 
 .post ul {
-	@apply my-2 pl-5 list-disc;
+    @apply my-2 pl-5 list-disc;
 }
 
 li {
-	@apply my-2;
+    @apply my-2;
 }
 
-.post>p {
-	@apply mb-8;
+.post > p {
+    @apply mb-8;
 }
 
 h1 {
@@ -76,30 +101,30 @@ h3 {
 }
 
 .title a {
-	@apply text-gray-900;
+    @apply text-gray-900;
 }
 
 
 .table-bordered {
-	@apply border text-center;
+    @apply border text-center;
 }
 
 .table-bordered thead {
-	@apply border-b;
+    @apply border-b;
 }
 
 .table-bordered th {
-	@apply text-sm font-bold text-gray-900 px-3 py-2 border-r;
+    @apply text-sm font-bold text-gray-900 px-3 py-2 border-r;
 }
 
 .table-bordered td {
-	@apply text-sm text-gray-900 font-light px-3 py-2 border-r whitespace-nowrap;
+    @apply text-sm text-gray-900 font-light px-3 py-2 border-r whitespace-nowrap;
 }
 
 .table-bordered tr {
-	@apply border-b;
+    @apply border-b;
 }
 
 a.nice_link {
-	@apply font-medium text-blue-500;
+    @apply font-medium text-blue-500;
 }

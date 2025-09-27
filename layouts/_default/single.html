@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html>
 {{ partial "header.html" . }}
-<body>
-<div class="min-h-screen bg-white">
+<body class="bg-retro-bg">
+<div class="min-h-screen pb-16">
     {{ partial "nav.html" . }}
-    <div class="py-10">
-        <header>
-            <div class="max-w-7xl mx-auto px-4 lg:px-8">
-                <h1 class="text-3xl font-bold leading-tight text-gray-900">
-                    {{ .Title }}
-                </h1>
-                {{ if .Description }}
-                <p class="text-sm italic">{{ .Description }}</p>
-                {{ end }}
+    <div class="mx-4 py-4">
+        <div class="retro-window mb-8">
+            <div class="retro-titlebar">
+                <span class="font-bold">{{ .Title }}</span>
+                <div class="flex space-x-1">
+                    <button class="w-4 h-4 bg-retro-button border border-retro-border text-xs">_</button>
+                    <button class="w-4 h-4 bg-retro-button border border-retro-border text-xs">□</button>
+                    <button class="w-4 h-4 bg-retro-button border border-retro-border text-xs">X</button>
+                </div>
             </div>
-        </header>
-        <main>
-            <div class="max-w-7xl mx-auto px-4 lg:px-8">
+            <div class="p-4">
+                <header class="mb-4">
+                    <h1 class="text-2xl font-bold mb-2">
+                        {{ .Title }}
+                    </h1>
+                    {{ if .Description }}
+                    <p class="text-sm font-mono">{{ .Description }}</p>
+                    {{ end }}
+                </header>
                 <div class="post">
                     {{ if ne .Type "project" }}
                     <div class="pb-4">
                         {{ if ne .Date.Year 1 }}
-                        <div class="meta">
+                        <div class="meta font-mono text-sm">
                             <div class="date inline">
                                 {{ if $.Site.Data.month }}{{ index $.Site.Data.month (printf "%d" .Date.Month) }} {{
                                 dateFormat "2" .Date }}, {{ .Date.Year }}{{ else }}{{ dateFormat "Jan 2 2006" .Date
@@ -38,58 +44,60 @@
                     {{ end }}
 
                     {{ if eq .Type "project" }}
-                    <hr class="border-gray-100 my-2"/>
+                    <hr class="border-2 border-retro-border my-4"/>
                     <!-- buttons -->
                     <div class="flex flex-row space-x-2 my-2">
                         {{ if ne .Params.repolink "" }}
-                        <a href="{{ .Params.repolink }}" target="_blank" class="button"><i class="fab fa-github"></i> Git Repo</a>
+                        <a href="{{ .Params.repolink }}" target="_blank" class="retro-button"><i class="fab fa-github"></i> Git Repo</a>
                         {{ end }}
                         {{ if ne .Params.demolink "" }}
-                        <a href="{{ .Params.demolink }}" target="_blank" class="button">Demo</a>
+                        <a href="{{ .Params.demolink }}" target="_blank" class="retro-button">Demo</a>
                         {{ end }}
                         {{ if ne .Params.bloglink "" }}
-                        <a href="{{ .Params.bloglink }}" target="_blank" class="button">View Post</a>
+                        <a href="{{ .Params.bloglink }}" target="_blank" class="retro-button">View Post</a>
                         {{ end }}
                     </div>
                     {{ end }}
-                    <hr class="border-gray-100 my-2"/>
-                    {{ .Content }}
+                    <hr class="border-2 border-retro-border my-4"/>
+                    <div class="font-mono text-sm">
+                        {{ .Content }}
+                    </div>
                 </div>
 
                 {{ if eq .Type "project" }}
-                    <hr class="border-gray-100 my-2"/>
+                    <hr class="border-2 border-retro-border my-4"/>
                     <!-- buttons -->
                     <div class="flex flex-row space-x-2 mb-2">
                         {{ if ne .Params.repolink "" }}
-                        <a href="{{ .Params.repolink }}" target="_blank" class="button"><i class="fab fa-github"></i> Git Repo</a>
+                        <a href="{{ .Params.repolink }}" target="_blank" class="retro-button"><i class="fab fa-github"></i> Git Repo</a>
                         {{ end }}
                         {{ if ne .Params.demolink "" }}
-                        <a href="{{ .Params.demolink }}" target="_blank" class="button">Demo</a>
+                        <a href="{{ .Params.demolink }}" target="_blank" class="retro-button">Demo</a>
                         {{ end }}
                         {{ if ne .Params.bloglink "" }}
-                        <a href="{{ .Params.bloglink }}" target="_blank" class="button">View Post</a>
+                        <a href="{{ .Params.bloglink }}" target="_blank" class="retro-button">View Post</a>
                         {{ end }}
                     </div>
                     {{ end }}
 
-                <hr class="border-gray-100 my-2"/>
+                <hr class="border-2 border-retro-border my-4"/>
                 <div class="tags">
                     {{ if ne .Type "page" }}
                     {{ if gt .Params.tags 0 }}
 
-                    <ul class="flat list-none flex flex-wrap justify-start items-center space-x-2">
-                        <li>Tags:</li>
+                    <ul class="flat list-none flex flex-wrap justify-start items-center space-x-2 font-mono text-sm">
+                        <li class="font-bold">Tags:</li>
                         {{ range .Params.tags }}
-                        <li><a class="text-blue-400" href="{{ " /tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
+                        <li><a class="retro-link" href="{{ " /tags/" | relLangURL }}{{ . | urlize }}">[{{ . }}]</a></li>
                         {{ end }}
                     </ul>
                     {{ end }}
                     {{ end }}
                 </div>
-                <hr class="border-gray-100 my-2"/>
+                <hr class="border-2 border-retro-border my-4"/>
                 <div class="share">
 
-                    <div class="border-b border-gray-300 pb-4 mb-10" v-pre>
+                    <div class="border-b-2 border-retro-border pb-4 mb-4" v-pre>
                         <!-- AddToAny BEGIN -->
                         <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
                             <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
@@ -107,8 +115,8 @@
 
                 </div>
             </div>
-
-        </main>
+            </div>
+        </div>
     </div>
     {{ partial "footer.html" . }}
 </div>

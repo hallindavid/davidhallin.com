@@ -1,45 +1,25 @@
-<div class="footer wrapper w-full flex justify-center mt-4">
-	<nav class="nav">
-		<div>{{ dateFormat "2006" now }} {{ with .Site.Copyright }} {{ . | safeHTML }} | {{ end }} Made with Hugo</div>
-	</nav>
-</div>
+<footer class="fixed bottom-0 left-0 right-0 bg-retro-button border-t-2 border-retro-border shadow-retro">
+	<div class="h-10 flex items-center justify-end px-4">
+		<div class="flex items-center space-x-4 font-mono text-sm">
+			<span>{{ dateFormat "2006" now }} {{ with .Site.Copyright }} {{ . | safeHTML }} | {{ end }}</span>
+			<span>Powered by Hugo</span>
+			<span class="border-l-2 border-retro-border h-6"></span>
+			<span id="clock" class="font-bold">--:--</span>
+		</div>
+	</div>
+</footer>
+
+<script>
+function updateClock() {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    document.getElementById('clock').textContent = `${hours}:${minutes}`;
+}
+updateClock();
+setInterval(updateClock, 1000);
+</script>
 
 {{- with .Site.Params.Social -}}
 <script>feather.replace()</script>
 {{- end -}}
-
-<script>
-  /* Progress bar */
-  //Source: https://alligator.io/js/progress-bar-javascript-css-variables/
-  var h = document.documentElement,
-    b = document.body,
-    st = "scrollTop",
-    sh = "scrollHeight",
-    progress = document.querySelector("#progress"),
-    scroll;
-  var scrollpos = window.scrollY;
-  var header = document.getElementById("header");
-  var navcontent = document.getElementById("nav-content");
-
-  document.addEventListener("scroll", function () {
-    /*Refresh scroll % width*/
-    scroll = ((h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight)) * 100;
-    progress.style.setProperty("--scroll", scroll + "%");
-
-    /*Apply classes for slide in bar*/
-    scrollpos = window.scrollY;
-
-    if (scrollpos > 10) {
-      header.classList.add("bg-white");
-      header.classList.add("shadow-sm");
-      navcontent.classList.remove("bg-gray-100");
-      navcontent.classList.add("bg-white");
-    } else {
-      header.classList.remove("bg-white");
-      header.classList.remove("shadow-sm");
-      navcontent.classList.remove("bg-white");
-      navcontent.classList.add("bg-gray-100");
-    }
-  });
-
-</script>

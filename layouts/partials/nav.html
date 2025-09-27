@@ -1,77 +1,68 @@
-<nav class="bg-white border-b border-gray-200" x-data="{ menuOpen: false }" @click.away="menuOpen = false">
-	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-		<div class="flex justify-between h-24">
-			<div class="flex">
+<nav class="retro-window mx-4 mt-4 mb-8" x-data="{ menuOpen: false }" @click.away="menuOpen = false">
+	<div class="retro-titlebar">
+		<span class="font-bold">{{ .Site.Title }} - Navigation</span>
+	</div>
+	<div class="p-4">
+		<div class="flex justify-between items-center">
+			<div class="flex items-center space-x-6">
 				{{ if .Site.Params.Avatar }}
-				<a href="{{ .Site.BaseURL }}" class="shrink-0 flex items-center space-x-4">
-					<img class="h-16 w-auto rounded-full" src="{{ .Site.Params.Avatar | safeURL }}" alt="{{ .Site.Title }}">
-					<h1 class="site-title text-2xl">{{ .Site.Title }}</h1>
+				<a href="{{ .Site.BaseURL }}" class="flex items-center space-x-3">
+					<img class="h-12 w-12 border-2 border-retro-border" src="{{ .Site.Params.Avatar | safeURL }}" alt="{{ .Site.Title }}">
+					<h1 class="site-title text-lg font-bold">{{ .Site.Title }}</h1>
 				</a>
 				{{ end }}
-				<div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
+				<div class="hidden sm:flex sm:space-x-2">
 					{{ $currentPage := . }}
 					{{ range .Site.Menus.main }}
-					<a href="{{ .URL }}" class="{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} border-indigo-500 text-gray-900 {{ else }} border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 {{ end }} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+					<a href="{{ .URL }}" class="retro-button {{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} bg-retro-highlight text-white {{ end }}">
 						{{ .Name }}
 					</a>
 					{{ end }}
 				</div>
 			</div>
-			<div class="hidden sm:ml-6 sm:flex sm:items-center space-x-2">
+			<div class="hidden sm:flex sm:items-center space-x-2">
 				{{- range $index, $key := .Site.Params.Links -}}
-				<a class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+				<a class="retro-button p-1"
 					href="{{ $key.url }}" title="{{ $key.icon }}">
 					<img src="{{ $key.image }}" class="h-4"/>
 				</a>
 				{{- end -}}
 				{{- range $index, $key := .Site.Params.Social -}}
-				<a class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+				<a class="retro-button p-1"
 					href="{{ $key.url }}" title="{{ $key.name }}">
 					<i class="h-4 w-4" data-feather="{{ $key.icon }}"></i>
 				</a>
 				{{- end -}}
-				{{- if or (eq .Site.Params.mode "auto") (eq .Site.Params.mode "dark") -}}
-				<a class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 scheme-toggle" id="scheme-toggle"></a>
-				{{- end -}}
 			</div>
-			<div class="-mr-2 flex items-center sm:hidden">
+			<div class="sm:hidden">
 				<button type="button" @click="menuOpen=!menuOpen"
-					class="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+					class="retro-button"
 					aria-controls="mobile-menu" aria-expanded="false">
 					<span class="sr-only">Open main menu</span>
-					<svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-						stroke="currentColor" aria-hidden="true">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-							d="M4 6h16M4 12h16M4 18h16" />
-					</svg>
-					<svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-						stroke="currentColor" aria-hidden="true">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-							d="M6 18L18 6M6 6l12 12" />
-					</svg>
+					<span x-show="!menuOpen">☰</span>
+					<span x-show="menuOpen">✕</span>
 				</button>
 			</div>
 		</div>
 	</div>
-	<div class="sm:hidden" id="mobile-menu" x-show="menuOpen">
-		<div class="pt-2 pb-3 space-y-1">
+	<div class="sm:hidden border-t-2 border-retro-border" id="mobile-menu" x-show="menuOpen">
+		<div class="p-2 space-y-2">
 			{{ range .Site.Menus.main }}
 			<a href="{{ .URL }}"
-			class="{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} bg-indigo-50 border-indigo-500 text-indigo-700 {{ else }} border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 {{ end }} block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+			class="retro-button block w-full text-left {{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} bg-retro-highlight text-white {{ end }}">
 				{{ .Name }}
 			</a>
 			{{ end }}
 			{{- range $index, $key := .Site.Params.Links -}}
-			<a href="{{ $key.url }}" title="{{ $key.name }}" class="flex flex-row items-center space-x-2 justify-start text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 border-transparent block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-				<img src="{{ $key.image }}" class="h-6">
+			<a href="{{ $key.url }}" title="{{ $key.name }}" class="retro-button flex items-center space-x-2">
+				<img src="{{ $key.image }}" class="h-4">
+				<span>{{ $key.name }}</span>
 			</a>
 			{{- end -}}
 			{{- range $index, $key := .Site.Params.Social -}}
-			<a href="{{ $key.url }}" title="{{ $key.name }}" class="flex flex-row items-center space-x-2 justify-start text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 border-transparent block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-				<i class="h-6 w-6" data-feather="{{ $key.icon }}"></i>
-				<span>
-					{{ $key.name }}
-				</span>
+			<a href="{{ $key.url }}" title="{{ $key.name }}" class="retro-button flex items-center space-x-2">
+				<i class="h-4 w-4" data-feather="{{ $key.icon }}"></i>
+				<span>{{ $key.name }}</span>
 			</a>
 			{{- end -}}
 		</div>
