@@ -1,31 +1,31 @@
 {{ $pag := $.Paginator }}
 {{ if gt $pag.TotalPages 1 }}
-<div class="flex justify-between items-center mt-6 pt-4 border-t-2 border-retro-border">
+<div class="pager">
 	<div>
 	{{ if $pag.HasPrev }}
-    <a href="{{ $pag.Prev.URL }}" class="retro-button px-2 sm:px-3" aria-label="Previous">
+    <a href="{{ $pag.Prev.URL }}" class="pager-button" aria-label="Previous">
 		<span class="sm:hidden">◀</span>
 		<span class="hidden sm:inline">◀ Previous</span>
 	</a>
 	{{ else }}
-    <span class="retro-button px-2 sm:px-3 opacity-50 cursor-not-allowed">
+    <span class="pager-button pager-button-disabled">
 		<span class="sm:hidden">◀</span>
 		<span class="hidden sm:inline">◀ Previous</span>
 	</span>
 	{{ end }}
 	</div>
-	<div class="font-mono text-xs sm:text-sm">
+	<div class="pager-meta">
 		<span class="sm:hidden">{{ $pag.PageNumber }}/{{ $pag.TotalPages }}</span>
 		<span class="hidden sm:inline">Page {{ $pag.PageNumber }} of {{ $pag.TotalPages }}</span>
 	</div>
 	<div>
 	{{ if $pag.HasNext }}
-    <a href="{{ $pag.Next.URL }}" class="retro-button px-2 sm:px-3" aria-label="Next">
+    <a href="{{ $pag.Next.URL }}" class="pager-button" aria-label="Next">
 		<span class="sm:hidden">▶</span>
 		<span class="hidden sm:inline">Next ▶</span>
 	</a>
 	{{ else }}
-    <span class="retro-button px-2 sm:px-3 opacity-50 cursor-not-allowed">
+    <span class="pager-button pager-button-disabled">
 		<span class="sm:hidden">▶</span>
 		<span class="hidden sm:inline">Next ▶</span>
 	</span>

@@ -1,11 +1,11 @@
-<footer class="fixed bottom-0 left-0 right-0 bg-retro-button border-t-2 border-retro-border shadow-retro">
-	<div class="h-10 flex items-center justify-end px-2 sm:px-4">
-		<div class="flex items-center space-x-2 sm:space-x-4 font-mono text-xs sm:text-sm">
-			<span class="hidden sm:inline">{{ dateFormat "2006" now }} {{ with .Site.Copyright }} {{ . | safeHTML }} | {{ end }}</span>
-			<span class="hidden sm:inline">Powered by Hugo</span>
-			<span class="sm:hidden">{{ dateFormat "2006" now }} {{ with .Site.Copyright }} {{ . | safeHTML }} {{ end }}</span>
-			<span class="hidden sm:block border-l-2 border-retro-border h-6"></span>
-			<span id="clock" class="font-bold px-2 py-0 shadow-retro-inset bg-gray-100">--:--</span>
+<footer class="site-footer">
+	<div class="site-frame footer-inner">
+		<div>
+			{{ dateFormat "2006" now }} {{ with .Site.Copyright }} {{ . | safeHTML }}{{ end }}
+		</div>
+		<div class="flex items-center gap-3">
+			<span>Powered by Hugo</span>
+			<span id="clock" class="clock-pill">--:--</span>
 		</div>
 	</div>
 </footer>

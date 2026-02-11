@@ -1,123 +1,87 @@
 <!DOCTYPE html>
 <html>
 {{ partial "header.html" . }}
-<body class="bg-retro-bg">
-<div class="min-h-screen pb-16">
+<body>
+<div class="site-shell">
     {{ partial "nav.html" . }}
-    <div class="mx-4 py-4">
-        <div class="retro-window mb-8">
-            <div class="retro-titlebar justify-between">
-                <span class="font-bold">{{ .Title }}</span>
-                <div class="flex items-center space-x-3 text-xs">
+    <main class="site-frame layout-grid">
+        <aside class="docs-sidebar">
+            <h2 class="sidebar-title">Sections</h2>
+            <ul class="sidebar-list">
+                {{ range .Site.Menus.main }}
+                <li>
+                    <a href="{{ .URL }}" class="sidebar-link{{ if eq $.RelPermalink .URL }} sidebar-link-active{{ end }}">{{ .Name }}</a>
+                </li>
+                {{ end }}
+            </ul>
+        </aside>
+        <article class="docs-panel">
+            <header class="panel-header">
+                <h1>{{ .Title }}</h1>
+                <div class="panel-meta">
                     {{ if and (ne .Type "project") (ne .Date.Year 1) }}
-                    <span class="font-mono">
-                        {{ if $.Site.Data.month }}{{ index $.Site.Data.month (printf "%d" .Date.Month) }} {{
-                        dateFormat "2" .Date }}, {{ .Date.Year }}{{ else }}{{ dateFormat "Jan 2 2006" .Date
-                        }}{{ end }}
+                    <span>
+                        {{ if $.Site.Data.month }}{{ index $.Site.Data.month (printf "%d" .Date.Month) }} {{ dateFormat "2" .Date }}, {{ .Date.Year }}{{ else }}{{ dateFormat "Jan 2, 2006" .Date }}{{ end }}
                     </span>
                     {{ end }}
                     {{ if and (ne .Type "page") (gt .Params.tags 0) }}
-                    <div class="flex space-x-1">
+                    <div class="tag-row">
                         {{ range .Params.tags }}
-                        <a class="text-retro-titletext hover:text-white" href="{{ "/tags/" | relLangURL }}{{ . | urlize
-                        }}">[{{ . }}]</a>
+                        <a class="tag-pill" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
                         {{ end }}
                     </div>
+                    {{ end }}
+                </div>
+                {{ if .Description }}
+                <p>{{ .Description }}</p>
+                {{ end }}
+            </header>
+
+            {{ if eq .Type "project" }}
+            <div class="resource-links">
+                {{ if ne .Params.repolink "" }}
+                <a href="{{ .Params.repolink }}" target="_blank" class="docs-button">Git Repo</a>
+                {{ end }}
+                {{ if ne .Params.demolink "" }}
+                <a href="{{ .Params.demolink }}" target="_blank" class="docs-button">Demo</a>
+                {{ end }}
+                {{ if ne .Params.bloglink "" }}
+                <a href="{{ .Params.bloglink }}" target="_blank" class="docs-button">View Post</a>
+                {{ end }}
+            </div>
+            {{ end }}
+
+            <div class="post-content">
+                {{ .Content }}
+            </div>
+
+            {{ if and (ne .Type "page") (gt .Params.tags 0) }}
+            <div class="meta-section">
+                <h3>Tags</h3>
+                <div class="tag-row">
+                    {{ range .Params.tags }}
+                    <a class="tag-pill" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
                     {{ end }}
                 </div>
             </div>
-            <div class="p-4">
-                <header class="mb-4">
-                    <!--                    <h1 class="text-2xl font-bold mb-2">-->
-                    <!--                        {{ .Title }}-->
-                    <!--                    </h1>-->
-                    {{ if .Description }}
-                    <p class="text-sm font-mono">{{ .Description }}</p>
-                    {{ end }}
-                </header>
-                <div class="post">
+            {{ end }}
 
-                    {{ if eq .Type "project" }}
-                    <hr class="border-2 border-retro-border my-4 -mx-2"/>
-                    <!-- buttons -->
-                    <div class="flex flex-row space-x-2 my-2">
-                        {{ if ne .Params.repolink "" }}
-                        <a href="{{ .Params.repolink }}" target="_blank" class="retro-button"><i
-                                class="fab fa-github"></i> Git Repo</a>
-                        {{ end }}
-                        {{ if ne .Params.demolink "" }}
-                        <a href="{{ .Params.demolink }}" target="_blank" class="retro-button">Demo</a>
-                        {{ end }}
-                        {{ if ne .Params.bloglink "" }}
-                        <a href="{{ .Params.bloglink }}" target="_blank" class="retro-button">View Post</a>
-                        {{ end }}
-                    </div>
-                    {{ end }}
-                    <hr class="border-2 border-retro-border my-4"/>
-                    <div class="font-mono text-sm">
-                        {{ .Content }}
-                    </div>
+            <div class="meta-section" v-pre>
+                <h3>Share</h3>
+                <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                    <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                    <a class="a2a_button_facebook"></a>
+                    <a class="a2a_button_x"></a>
+                    <a class="a2a_button_email"></a>
+                    <a class="a2a_button_reddit"></a>
+                    <a class="a2a_button_pocket"></a>
+                    <a class="a2a_button_print"></a>
                 </div>
-
-                {{ if eq .Type "project" }}
-                <hr class="border-2 border-retro-border my-4"/>
-                <!-- buttons -->
-                <div class="flex flex-row space-x-2 mb-2">
-                    {{ if ne .Params.repolink "" }}
-                    <a href="{{ .Params.repolink }}" target="_blank" class="retro-button"><i class="fab fa-github"></i>
-                        Git Repo</a>
-                    {{ end }}
-                    {{ if ne .Params.demolink "" }}
-                    <a href="{{ .Params.demolink }}" target="_blank" class="retro-button">Demo</a>
-                    {{ end }}
-                    {{ if ne .Params.bloglink "" }}
-                    <a href="{{ .Params.bloglink }}" target="_blank" class="retro-button">View Post</a>
-                    {{ end }}
-                </div>
-                {{ end }}
-
-                {{ if ne .Type "page" }}
-                {{ if gt .Params.tags 0 }}
-                <hr class="border-2 border-retro-border my-4"/>
-                <div class="tags">
-
-
-                    <ul class="flat list-none flex flex-wrap justify-start items-center space-x-2 font-mono text-sm">
-                        <li class="font-bold">Tags:</li>
-                        {{ range .Params.tags }}
-                        <li><a class="retro-link" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">[{{ . }}]</a></li>
-                        {{ end }}
-                    </ul>
-
-                </div>
-                {{ end }}
-                {{ end }}
-                <hr class="border-2 border-retro-border my-4"/>
-                <div class="share">
-
-                    <div class="border-b-2 border-retro-border pb-4 mb-4" v-pre>
-                        <!-- AddToAny BEGIN -->
-                        <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
-                            <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
-                            <a class="a2a_button_facebook"></a>
-                            <a class="a2a_button_x"></a>
-                            <a class="a2a_button_email"></a>
-                            <a class="a2a_button_reddit"></a>
-                            <a class="a2a_button_pocket"></a>
-                            <a class="a2a_button_print"></a>
-                        </div>
-                        <script async src="https://static.addtoany.com/menu/page.js"></script>
-                        <!-- AddToAny END -->
-
-                    </div>
-
-                </div>
+                <script async src="https://static.addtoany.com/menu/page.js"></script>
             </div>
-        </div>
-    </div>
-</div>
-{{ partial "footer.html" . }}
+        </article>
+    </main>
+    {{ partial "footer.html" . }}
 </div>
 </body>
-
 </html>
