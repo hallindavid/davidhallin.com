@@ -1,0 +1,24 @@
+{{- $pages := where .Site.RegularPages "Params.hidden" "ne" true -}}
+{{- $pages = where $pages "Type" "ne" "page" -}}
+{{- $index := slice -}}
+{{- range $pages -}}
+    {{- $summary := .Summary | plainify | htmlUnescape -}}
+    {{- with .Description -}}
+        {{- $summary = . | plainify | htmlUnescape -}}
+    {{- end -}}
+    {{- $date := "" -}}
+    {{- if gt .Date.Year 1 -}}
+        {{- $date = .Date.Format "2006-01-02" -}}
+    {{- end -}}
+    {{- $index = $index | append (dict
+        "title" .Title
+        "permalink" .RelPermalink
+        "summary" $summary
+        "content" (.Plain | htmlUnescape | truncate 3000)
+        "tags" (.Params.tags | default (slice))
+        "section" .Section
+        "type" .Type
+        "date" $date
+    ) -}}
+{{- end -}}
+{{- $index | jsonify -}}
