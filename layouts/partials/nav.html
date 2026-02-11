@@ -17,6 +17,20 @@
 				</a>
 				{{ end }}
 			</div>
+			<div class="hidden sm:block search-slot">
+				<div class="site-search" data-search>
+					<label class="sr-only" for="site-search-desktop">Search posts</label>
+					<input
+						id="site-search-desktop"
+						type="search"
+						class="site-search-input"
+						placeholder="Search posts..."
+						autocomplete="off"
+						data-search-input
+					>
+					<div class="site-search-results" data-search-results hidden></div>
+				</div>
+			</div>
 			<div class="hidden sm:flex items-center gap-1">
 				{{- range $index, $key := .Site.Params.Social -}}
 				<a class="icon-link" href="{{ $key.url }}" title="{{ $key.name }}">
@@ -34,6 +48,20 @@
 		</div>
 		<div class="sm:hidden" id="mobile-menu" x-show="menuOpen">
 			<div class="mobile-panel">
+				<div class="mobile-search">
+					<div class="site-search" data-search>
+						<label class="sr-only" for="site-search-mobile">Search posts</label>
+						<input
+							id="site-search-mobile"
+							type="search"
+							class="site-search-input"
+							placeholder="Search posts..."
+							autocomplete="off"
+							data-search-input
+						>
+						<div class="site-search-results" data-search-results hidden></div>
+					</div>
+				</div>
 				{{ range .Site.Menus.main }}
 				<a href="{{ .URL }}" class="mobile-nav-link{{ if eq $currentPage.RelPermalink .URL }} mobile-nav-link-active{{ end }}">
 					{{ .Name }}

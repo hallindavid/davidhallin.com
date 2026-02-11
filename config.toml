@@ -58,3 +58,6 @@ url = "/index.xml"
 
 PygmentsCodeFences = true
 PygmentsStyle = "monokai"
+
+[outputs]
+home = ["HTML", "RSS", "JSON"]
