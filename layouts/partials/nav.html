@@ -1,70 +1,52 @@
-<nav class="retro-window mx-4 mt-4 mb-8" x-data="{ menuOpen: false }" @click.away="menuOpen = false">
-	<div class="retro-titlebar">
-		<span class="font-bold">{{ .Site.Title }} - Navigation</span>
-	</div>
-	<div class="p-4">
-		<div class="flex justify-between items-center">
-			<div class="flex items-center space-x-6">
-				{{ if .Site.Params.Avatar }}
-				<a href="{{ .Site.BaseURL }}" class="flex items-center space-x-3">
-					<img class="h-12 w-12 border-2 border-retro-border" src="{{ .Site.Params.Avatar | safeURL }}" alt="{{ .Site.Title }}">
-					<h1 class="site-title text-lg font-bold">{{ .Site.Title }}</h1>
+{{ $currentPage := . }}
+<nav class="site-nav" x-data="{ menuOpen: false }" @click.away="menuOpen = false">
+	<div class="site-frame">
+		<div class="nav-inner">
+			<div class="brand-group">
+				<a href="{{ .Site.BaseURL }}" class="brand-link">
+					{{ if .Site.Params.Avatar }}
+					<img class="brand-avatar" src="{{ .Site.Params.Avatar | safeURL }}" alt="{{ .Site.Title }}">
+					{{ end }}
+					<span class="brand-title">{{ .Site.Title }}</span>
+				</a>
+			</div>
+			<div class="hidden sm:flex items-center gap-1">
+				{{ range .Site.Menus.main }}
+				<a href="{{ .URL }}" class="nav-link{{ if eq $currentPage.RelPermalink .URL }} nav-link-active{{ end }}">
+					{{ .Name }}
 				</a>
 				{{ end }}
-				<div class="hidden sm:flex sm:space-x-2">
-					{{ $currentPage := . }}
-					{{ range .Site.Menus.main }}
-					<a href="{{ .URL }}" class="retro-button {{if eq $currentPage.RelPermalink .URL }} !bg-gray-700 !text-white !shadow-retro-inset translate-x-px translate-y-px {{ end }}">
-						{{ .Name }}
-					</a>
-					{{ end }}
-				</div>
 			</div>
-			<div class="hidden sm:flex sm:items-center space-x-2">
-				{{- range $index, $key := .Site.Params.Links -}}
-				<a class="retro-button p-1"
-					href="{{ $key.url }}" title="{{ $key.icon }}">
-					<img src="{{ $key.image }}" class="h-4"/>
-				</a>
-				{{- end -}}
+			<div class="hidden sm:flex items-center gap-1">
 				{{- range $index, $key := .Site.Params.Social -}}
-				<a class="retro-button p-1"
-					href="{{ $key.url }}" title="{{ $key.name }}">
+				<a class="icon-link" href="{{ $key.url }}" title="{{ $key.name }}">
 					<i class="h-4 w-4" data-feather="{{ $key.icon }}"></i>
 				</a>
 				{{- end -}}
 			</div>
 			<div class="sm:hidden">
-				<button type="button" @click="menuOpen=!menuOpen"
-					class="retro-button"
-					aria-controls="mobile-menu" aria-expanded="false">
+				<button type="button" @click="menuOpen = !menuOpen" class="menu-toggle" aria-controls="mobile-menu" aria-expanded="false">
 					<span class="sr-only">Open main menu</span>
-					<span x-show="!menuOpen">☰</span>
-					<span x-show="menuOpen">✕</span>
+					<span x-show="!menuOpen">Menu</span>
+					<span x-show="menuOpen">Close</span>
 				</button>
 			</div>
 		</div>
-	</div>
-	<div class="sm:hidden border-t-2 border-retro-border" id="mobile-menu" x-show="menuOpen">
-		<div class="p-2 space-y-2">
-			{{ range .Site.Menus.main }}
-			<a href="{{ .URL }}"
-			class="retro-button block w-full text-left {{if eq $currentPage.RelPermalink .URL }} !bg-gray-700 !text-white !shadow-retro-inset translate-x-px translate-y-px {{ end }}">
-				{{ .Name }}
-			</a>
-			{{ end }}
-			{{- range $index, $key := .Site.Params.Links -}}
-			<a href="{{ $key.url }}" title="{{ $key.name }}" class="retro-button flex items-center space-x-2">
-				<img src="{{ $key.image }}" class="h-4">
-				<span>{{ $key.name }}</span>
-			</a>
-			{{- end -}}
-			{{- range $index, $key := .Site.Params.Social -}}
-			<a href="{{ $key.url }}" title="{{ $key.name }}" class="retro-button flex items-center space-x-2">
-				<i class="h-4 w-4" data-feather="{{ $key.icon }}"></i>
-				<span>{{ $key.name }}</span>
-			</a>
-			{{- end -}}
+		<div class="sm:hidden" id="mobile-menu" x-show="menuOpen">
+			<div class="mobile-panel">
+				{{ range .Site.Menus.main }}
+				<a href="{{ .URL }}" class="mobile-nav-link{{ if eq $currentPage.RelPermalink .URL }} mobile-nav-link-active{{ end }}">
+					{{ .Name }}
+				</a>
+				{{ end }}
+				<div class="mobile-social">
+					{{- range $index, $key := .Site.Params.Social -}}
+					<a href="{{ $key.url }}" title="{{ $key.name }}" class="icon-link">
+						<i class="h-4 w-4" data-feather="{{ $key.icon }}"></i>
+					</a>
+					{{- end -}}
+				</div>
+			</div>
 		</div>
 	</div>
 </nav>
