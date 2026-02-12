@@ -19,7 +19,7 @@ I almost always start with data structures and flowcharts/data-lifecycle before 
 
 More broadly, I think there's a shortsightedness that creeps in when developers just address tickets without thinking about the bigger picture. A ticket is a small piece of a product, and a product is a tool that real people rely on. The developers who build great software are the ones who understand the people using it. No matter how much tech you know, success comes down to how well you understand human needs.
 
-My go-to stack is Laravel, Livewire, Filament, and TailwindCSS — but I also have written some pretty neat high-math pieces in golang, and of course, I love databases and whatever else fits the problem. Check out my <a href="/tool-belt">tool-belt</a> for the full picture.
+My go-to stack is Laravel, Livewire, Filament, and TailwindCSS — but I also have written some pretty neat high-math pieces in golang, and of course, I love databases and whatever else fits the problem. Check out my <a href="/uses">uses</a> page for the full picture.
 
 ## beyond the screen
 
