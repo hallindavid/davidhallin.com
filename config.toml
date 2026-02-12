@@ -43,6 +43,11 @@ googleAnalytics = ""
     url = "/about/"
     weight = 3
 
+    [[menu.main]]
+    name = "uses"
+    url = "/uses/"
+    weight = 4
+
 [[params.social]]
 name = "Github"
 icon = "github"

@@ -20,12 +20,12 @@
 				<header class="panel-header">
 					<h1>
 						{{ if isset .Data "Term" }}
-							{{ .Data.Term }}
+							{{ .Data.Term | lower }}
 						{{ else }}
-							{{ .Name }}
+							{{ .Name | lower }}
 						{{ end }}
 					</h1>
-					{{- if and (not (isset .Data "Term")) (isset .Site.Params "subtitle") -}}
+					{{- if and (not (isset .Data "Term")) (isset .Site.Params "subtitle") (ne .Section "projects") -}}
 					<p>{{ .Site.Params.Subtitle | markdownify }}</p>
 					{{- end -}}
 					{{ .Content }}

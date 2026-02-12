@@ -18,7 +18,7 @@
 			</aside>
 			<section class="docs-panel">
 				<header class="panel-header">
-					<h1>{{ .Name }}</h1>
+					<h1>{{ .Name | lower }}</h1>
 					{{ .Content }}
 				</header>
 				{{ $data := .Data }}
