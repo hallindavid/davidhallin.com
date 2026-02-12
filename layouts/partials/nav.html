@@ -10,13 +10,6 @@
 					<span class="brand-title">{{ .Site.Title }}</span>
 				</a>
 			</div>
-			<div class="hidden sm:flex items-center gap-1">
-				{{ range .Site.Menus.main }}
-				<a href="{{ .URL }}" class="nav-link{{ if eq $currentPage.RelPermalink .URL }} nav-link-active{{ end }}">
-					{{ .Name }}
-				</a>
-				{{ end }}
-			</div>
 			<div class="hidden sm:block search-slot">
 				<div class="site-search" data-search>
 					<label class="sr-only" for="site-search-desktop">Search posts</label>
@@ -38,7 +31,7 @@
 				</a>
 				{{- end -}}
 			</div>
-			<div class="sm:hidden">
+			<div class="lg:hidden">
 				<button type="button" @click="menuOpen = !menuOpen" class="menu-toggle" aria-controls="mobile-menu" aria-expanded="false">
 					<span class="sr-only">Open main menu</span>
 					<span x-show="!menuOpen">Menu</span>
@@ -46,7 +39,7 @@
 				</button>
 			</div>
 		</div>
-		<div class="sm:hidden" id="mobile-menu" x-show="menuOpen">
+		<div class="lg:hidden" id="mobile-menu" x-show="menuOpen">
 			<div class="mobile-panel">
 				<div class="mobile-search">
 					<div class="site-search" data-search>
