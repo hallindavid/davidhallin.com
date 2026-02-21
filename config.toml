@@ -14,7 +14,7 @@ googleAnalytics = ""
 [params]
 	subtitle = "a blog by david hallin about programming, and learning new things"
 
-	avatar = "/images/dave.jpeg"
+	avatar = "/images/dave.png"
 	
 	featherIconsCDN = true
 	favicon = "/favicon.ico"
