@@ -1,5 +1,5 @@
 ---
-title: Working as a Senior Laravel Developer in 2026
+title: working as a senior laravel developer in 2026
 date: 2026-02-20
 description: AI is reshaping my workflow as a Laravel developer and kicking off a very fast learning sprint of my career
 tags: [laravel,general]
