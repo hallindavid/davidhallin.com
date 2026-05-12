@@ -13,6 +13,10 @@
             summary: item.summary || "",
             content: item.content || "",
             tags: Array.isArray(item.tags) ? item.tags : [],
+            sourceType: item.sourceType || "",
+            sourceTitle: item.sourceTitle || "",
+            sourceAuthor: item.sourceAuthor || "",
+            sourceUrl: item.sourceUrl || "",
             section: item.section || "",
             type: item.type || "",
             date: item.date || ""
@@ -46,6 +50,9 @@
                         { name: "title", weight: 0.45 },
                         { name: "summary", weight: 0.25 },
                         { name: "content", weight: 0.2 },
+                        { name: "sourceTitle", weight: 0.2 },
+                        { name: "sourceAuthor", weight: 0.15 },
+                        { name: "sourceType", weight: 0.05 },
                         { name: "tags", weight: 0.1 }
                     ]
                 });

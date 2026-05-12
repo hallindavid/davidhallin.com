@@ -16,6 +16,10 @@
         "summary" $summary
         "content" (.Plain | htmlUnescape | truncate 3000)
         "tags" (.Params.tags | default (slice))
+        "sourceType" (.Params.sourceType | default "")
+        "sourceTitle" (.Params.sourceTitle | default "")
+        "sourceAuthor" (.Params.sourceAuthor | default "")
+        "sourceUrl" (.Params.sourceUrl | default "")
         "section" .Section
         "type" .Type
         "date" $date

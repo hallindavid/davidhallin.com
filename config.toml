@@ -32,19 +32,24 @@ copyright = "© David Hallin"
     weight = 1
 
     [[menu.main]]
+    name = "readings"
+    url = "/tags/readings/"
+    weight = 2
+
+    [[menu.main]]
     name = "projects"
     url = "/projects/"
-    weight = 2
+    weight = 3
 
     [[menu.main]]
     name = "about"
     url = "/about/"
-    weight = 3
+    weight = 4
 
     [[menu.main]]
     name = "uses"
     url = "/uses/"
-    weight = 4
+    weight = 5
 
 [[params.social]]
 name = "Github"
