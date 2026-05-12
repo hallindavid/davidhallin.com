@@ -272,6 +272,10 @@
         @apply mt-1 text-sm leading-6 text-slate-600;
     }
 
+    .post-tags {
+        @apply mt-3;
+    }
+
     .post-content {
         @apply min-w-0 text-slate-700 text-base leading-8;
     }

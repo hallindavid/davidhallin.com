@@ -42,6 +42,13 @@
                         {{ .RawContent }}
                         {{ end }}
                     </p>
+                    {{ if gt (.Params.tags | default (slice) | len) 0 }}
+                    <div class="tag-row post-tags">
+                        {{ range .Params.tags }}
+                        <a class="tag-pill" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+                        {{ end }}
+                    </div>
+                    {{ end }}
                 </article>
                 {{ end }}
                 {{ template "partials/paginator.html" . }}

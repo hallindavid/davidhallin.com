@@ -35,6 +35,26 @@ draft: true
 
 Set `draft: false` when ready to publish. Other content directories: `content/projects/`, `content/worklog/`.
 
+## Writing Readings
+
+Readings are blog posts about books, articles, essays, docs, or other things you have read. Scaffold one with:
+
+```bash
+hugo new --kind readings blog/my-source-title.md
+```
+
+Use `readings` as the first tag, followed by medium and topic tags:
+
+```yaml
+tags: ["readings", "book", "programming"]
+sourceType: "book"
+sourceTitle: "The Pragmatic Programmer"
+sourceAuthor: "Andy Hunt, Dave Thomas"
+sourceUrl: ""
+```
+
+Readings appear in the normal blog feed, under `/tags/readings/`, and in site search.
+
 ## Scripts
 
 | Command | What it does |
