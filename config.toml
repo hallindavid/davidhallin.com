@@ -1,15 +1,8 @@
 baseURL = "https://davidhallin.com/"
-languageCode = "en-us"
+locale = "en-US"
 title = "davidhallin.com"
-paginate = 20
 
 copyright = "© David Hallin"
-
-pygmentsstyle = "vs"
-pygmentscodefences = true
-pygmentscodefencesguesssyntax = true
-
-googleAnalytics = ""
 
 [params]
 	subtitle = "a blog by david hallin about programming, and learning new things"
@@ -19,14 +12,19 @@ googleAnalytics = ""
 	featherIconsCDN = true
 	favicon = "/favicon.ico"
 	mode = "auto" # "dark" or "auto"
+
+[pagination]
+  pagerSize = 20
 	
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    style = "monokai"
 
-
-# Nav.
 [menu]
     [[menu.main]]
     name = "home"
@@ -60,9 +58,6 @@ url = "/index.xml"
 
 [taxonomies]
    tag = "tags"
-
-PygmentsCodeFences = true
-PygmentsStyle = "monokai"
 
 [outputs]
 home = ["HTML", "RSS", "JSON"]

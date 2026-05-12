@@ -21,7 +21,7 @@
                 <div class="panel-meta">
                     {{ if and (ne .Type "project") (ne .Date.Year 1) }}
                     <span>
-                        {{ if $.Site.Data.month }}{{ index $.Site.Data.month (printf "%d" .Date.Month) }} {{ dateFormat "2" .Date }}, {{ .Date.Year }}{{ else }}{{ dateFormat "Jan 2, 2006" .Date }}{{ end }}
+                        {{ if hugo.Data.month }}{{ index hugo.Data.month (printf "%d" .Date.Month) }} {{ dateFormat "2" .Date }}, {{ .Date.Year }}{{ else }}{{ dateFormat "Jan 2, 2006" .Date }}{{ end }}
                     </span>
                     {{ end }}
                     {{ if and (ne .Type "page") (gt .Params.tags 0) }}
