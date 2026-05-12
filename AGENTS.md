@@ -23,3 +23,4 @@
 - Do not modify files in `/public`.
 - Never commit secrets or api keys.
 - Do not remove existing `front-matter` fields.
+- never auto-commit or push
