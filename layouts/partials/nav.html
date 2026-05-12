@@ -1,73 +1,115 @@
 {{ $currentPage := . }}
-<nav class="site-nav" x-data="{ menuOpen: false }" @click.away="menuOpen = false">
-	<div class="site-frame">
-		<div class="nav-inner">
-			<div class="brand-group">
-				<a href="{{ .Site.BaseURL }}" class="brand-link">
-					{{ if .Site.Params.Avatar }}
-					<img class="brand-avatar" src="{{ .Site.Params.Avatar | safeURL }}" alt="{{ .Site.Title }}">
-					{{ end }}
-					<span class="brand-title">{{ .Site.Title }}</span>
-				</a>
-			</div>
-			<div class="hidden sm:block search-slot">
-				<div class="site-search" data-search>
-					<label class="sr-only" for="site-search-desktop">Search posts</label>
-					<input
-						id="site-search-desktop"
-						type="search"
-						class="site-search-input"
-						placeholder="Search posts..."
-						autocomplete="off"
-						data-search-input
-					>
-					<div class="site-search-results" data-search-results hidden></div>
-				</div>
-			</div>
-			<div class="hidden sm:flex items-center gap-1">
-				{{- range $index, $key := .Site.Params.Social -}}
-				<a class="icon-link" href="{{ $key.url }}" title="{{ $key.name }}">
-					<i class="h-4 w-4" data-feather="{{ $key.icon }}"></i>
-				</a>
-				{{- end -}}
-			</div>
-			<div class="lg:hidden">
-				<button type="button" @click="menuOpen = !menuOpen" class="menu-toggle" aria-controls="mobile-menu" aria-expanded="false">
-					<span class="sr-only">Open main menu</span>
-					<span x-show="!menuOpen">Menu</span>
-					<span x-show="menuOpen">Close</span>
-				</button>
-			</div>
-		</div>
-		<div class="lg:hidden" id="mobile-menu" x-show="menuOpen">
-			<div class="mobile-panel">
-				<div class="mobile-search">
-					<div class="site-search" data-search>
-						<label class="sr-only" for="site-search-mobile">Search posts</label>
-						<input
-							id="site-search-mobile"
-							type="search"
-							class="site-search-input"
-							placeholder="Search posts..."
-							autocomplete="off"
-							data-search-input
-						>
-						<div class="site-search-results" data-search-results hidden></div>
-					</div>
-				</div>
-				{{ range .Site.Menus.main }}
-				<a href="{{ .URL }}" class="mobile-nav-link{{ if eq $currentPage.RelPermalink .URL }} mobile-nav-link-active{{ end }}">
-					{{ .Name }}
-				</a>
-				{{ end }}
-				<div class="mobile-social">
-					{{- range $index, $key := .Site.Params.Social -}}
-					<a href="{{ $key.url }}" title="{{ $key.name }}" class="icon-link">
-						<i class="h-4 w-4" data-feather="{{ $key.icon }}"></i>
-					</a>
-					{{- end -}}
-				</div>
-			</div>
-		</div>
-	</div>
+<nav
+    class="site-nav"
+    x-data="{ menuOpen: false }"
+    @click.away="menuOpen = false"
+>
+    <div class="site-frame">
+        <div class="nav-inner">
+            <div class="brand-group">
+                <a href="{{ .Site.BaseURL }}" class="brand-link">
+                    {{ if .Site.Params.Avatar }}
+                        <img
+                            class="brand-avatar"
+                            src="{{ .Site.Params.Avatar | safeURL }}"
+                            alt="{{ .Site.Title }}"
+                        />
+                    {{ end }}
+                    <span class="brand-title">{{ .Site.Title }}</span>
+                </a>
+            </div>
+            <div class="hidden sm:block search-slot">
+                <div class="site-search" data-search>
+                    <label class="sr-only" for="site-search-desktop"
+                        >Search posts</label
+                    >
+                    <input
+                        id="site-search-desktop"
+                        type="search"
+                        class="site-search-input"
+                        placeholder="Search posts..."
+                        autocomplete="off"
+                        data-search-input
+                    />
+                    <div
+                        class="site-search-results"
+                        data-search-results
+                        hidden
+                    ></div>
+                </div>
+            </div>
+            <div class="hidden sm:flex items-center gap-1">
+                {{- range $index, $key := .Site.Params.Social -}}
+                    <a
+                        class="icon-link"
+                        href="{{ $key.url }}"
+                        title="{{ $key.name }}"
+                    >
+                        <i class="h-4 w-4" data-feather="{{ $key.icon }}"></i>
+                    </a>
+                {{- end -}}
+            </div>
+            <div class="lg:hidden">
+                <button
+                    type="button"
+                    @click="menuOpen = !menuOpen"
+                    class="menu-toggle"
+                    aria-controls="mobile-menu"
+                    aria-expanded="false"
+                >
+                    <span class="sr-only">Open main menu</span>
+                    <span x-show="!menuOpen">Menu</span>
+                    <span x-show="menuOpen">Close</span>
+                </button>
+            </div>
+        </div>
+        <div class="lg:hidden" id="mobile-menu" x-show="menuOpen">
+            <div class="mobile-panel">
+                <div class="mobile-search">
+                    <div class="site-search" data-search>
+                        <label class="sr-only" for="site-search-mobile"
+                            >Search posts</label
+                        >
+                        <input
+                            id="site-search-mobile"
+                            type="search"
+                            class="site-search-input"
+                            placeholder="Search posts..."
+                            autocomplete="off"
+                            data-search-input
+                        />
+                        <div
+                            class="site-search-results"
+                            data-search-results
+                            hidden
+                        ></div>
+                    </div>
+                </div>
+                {{ range .Site.Menus.main }}
+                    <a
+                        href="{{ .URL }}"
+                        class="mobile-nav-link{{ if eq $currentPage.RelPermalink .URL }}
+                            mobile-nav-link-active
+                        {{ end }}"
+                    >
+                        {{ .Name }}
+                    </a>
+                {{ end }}
+                <div class="mobile-social">
+                    {{- range $index, $key := .Site.Params.Social -}}
+                        <a
+                            href="{{ $key.url }}"
+                            title="{{ $key.name }}"
+                            class="icon-link"
+                        >
+                            <i
+                                class="h-4 w-4"
+                                data-feather="{{ $key.icon }}"
+                            ></i>
+                        </a>
+                    {{- end -}}
+                </div>
+            </div>
+        </div>
+    </div>
 </nav>

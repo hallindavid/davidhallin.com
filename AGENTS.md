@@ -1,26 +1,35 @@
-# Agent Instructions: Hugo/Go Project
+# Agent Instructions: Hugo Project
 
 ## Project Overview
-- **Stack:** Hugo Static Site Generator (Go)
-- **Type** Personal/Tech Blog
+- **Stack:** Hugo static site with PostCSS/Tailwind.
+- **Type:** Personal/tech blog.
+- Deployment is configured through `netlify.toml`.
 
-## Development Environment
-- Run `hugo server -D` for local development (includes drafts).
-- Run `hugo` to build production files.
-- Always check `.github/workflows` for CI/CD pipelines before editing layouts.
+## Development
+- Serve locally with `npm run watch`.
+- Production build/deploy command is `npm run deploy`.
+- Run checks with `npm run lint`.
+- Use `npm run format` for layouts/assets/config files.
+- Use `npm run format:content` only when intentionally formatting Markdown content.
 
 ## Directory Structure
-- `/content`: Markdown files (posts, pages).
-- `/layouts`: Hugo templates and shortcodes (HTML/Go templates).
-- `/static`: Static files (images, root-level files) that go directly to `/public`.
+- `/content`: Markdown posts and pages.
+- `/layouts`: Hugo templates and shortcodes.
+- `/resources/styles`: source CSS.
+- `/static`: static files copied directly to the generated site.
+- `/public`: generated output; do not edit.
 
-## Commands
-- **Serve:** `hugo server -D --fastRender`
-- **Lint/Check:** `./check.sh` (if available) or `npx prettier --check`
-- **Tidy:** `go mod tidy` (if using Go modules in themes).
+## Coding Preferences
+- Prefer the smallest useful change that achieves the goal.
+- Keep edits focused on the requested task; avoid opportunistic refactors.
+- Brevity is valuable in code, comments, docs, and explanations.
+- Follow existing project patterns before introducing new abstractions.
+- Add dependencies only when they clearly reduce complexity or risk.
+- When changing behavior, prefer one clear change over several bundled improvements.
+
 
 ## Boundaries
 - Do not modify files in `/public`.
-- Never commit secrets or api keys.
-- Do not remove existing `front-matter` fields.
-- never auto-commit or push
+- Do not remove existing front matter fields.
+- Never commit secrets or API keys.
+- Never auto-commit or push.

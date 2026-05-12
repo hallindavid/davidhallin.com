@@ -23,6 +23,7 @@
         "section" .Section
         "type" .Type
         "date" $date
-    ) -}}
+        )
+    -}}
 {{- end -}}
 {{- $index | jsonify -}}

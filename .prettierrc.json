@@ -1,0 +1,20 @@
+{
+    "plugins": ["prettier-plugin-go-template"],
+    "singleQuote": true,
+    "tabWidth": 4,
+    "overrides": [
+        {
+            "files": ["layouts/**/*.html", "layouts/**/*.json"],
+            "options": {
+                "parser": "go-template",
+                "tabWidth": 4
+            }
+        },
+        {
+            "files": ["package.json", "package-lock.json"],
+            "options": {
+                "tabWidth": 2
+            }
+        }
+    ]
+}

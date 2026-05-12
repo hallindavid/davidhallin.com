@@ -1,76 +1,98 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-{{ partial "header.html" . }}
+    {{ partial "header.html" . }}
 
-<body>
-	<div class="site-shell">
-		{{ partial "nav.html" . }}
-		<main class="site-frame layout-grid">
-			<aside class="docs-sidebar">
-				<h2 class="sidebar-title">Sections</h2>
-				<ul class="sidebar-list">
-					{{ range .Site.Menus.main }}
-					<li>
-						<a href="{{ .URL }}" class="sidebar-link{{ if eq $.RelPermalink .URL }} sidebar-link-active{{ end }}">{{ .Name }}</a>
-					</li>
-					{{ end }}
-				</ul>
-			</aside>
-			<section class="docs-panel">
-				<header class="panel-header">
-					<h1>
-						{{ if isset .Data "Term" }}
-							{{ .Data.Term | lower }}
-						{{ else }}
-							{{ .Name | lower }}
-						{{ end }}
-					</h1>
-					{{- if and (not (isset .Data "Term")) (isset .Site.Params "subtitle") (ne .Section "projects") -}}
-					<p>{{ .Site.Params.Subtitle | markdownify }}</p>
-					{{- end -}}
-					{{ .Content }}
-				</header>
-				<div class="posts">
-					{{- range .Data.Pages -}}
-					{{- if (in (.Site.Params.excludedTypes | default (slice "page")) .Type) -}}
-					{{- else -}}
-					<article class="post-card">
-						{{ if ne .Type "project" }}
-						<div class="post-meta">
-							{{ if hugo.Data.month }}{{ index hugo.Data.month (printf "%d" .Date.Month) }} {{ .Date.Day }}, {{ .Date.Year }}{{ else }}{{ dateFormat "Jan 2, 2006" .Date }}{{ end }}
-						</div>
-						{{ end }}
-						<h2 class="post-title">
-							<a href="{{ .RelPermalink }}">
-								{{ if eq .Type "worklog" }}WORKLOG: {{ end }}
-								{{.Title}}
-								{{ if .Draft }}<sup class="text-red-600">[DRAFT]</sup>{{ end }}
-							</a>
-						</h2>
-						<p class="post-description">
-							{{ if isset .Params "description" }}
-							{{ .Description }}
-							{{ else if gt (countrunes .RawContent) 140 }}
-							{{ slicestr .RawContent 0 140 }}...
-							{{ else }}
-							{{ .RawContent }}
-							{{ end }}
-						</p>
-						{{ if gt (.Params.tags | default (slice) | len) 0 }}
-						<div class="tag-row post-tags">
-							{{ range .Params.tags }}
-							<a class="tag-pill" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
-							{{ end }}
-						</div>
-						{{ end }}
-					</article>
-					{{- end -}}
-					{{- end -}}
-				</div>
-			</section>
-		</main>
-		{{ partial "footer.html" . }}
-	</div>
-</body>
 
+    <body>
+        <div class="site-shell">
+            {{ partial "nav.html" . }}
+            <main class="site-frame layout-grid">
+                <aside class="docs-sidebar">
+                    <h2 class="sidebar-title">Sections</h2>
+                    <ul class="sidebar-list">
+                        {{ range .Site.Menus.main }}
+                            <li>
+                                <a
+                                    href="{{ .URL }}"
+                                    class="sidebar-link{{ if eq $.RelPermalink .URL }}
+                                        sidebar-link-active
+                                    {{ end }}"
+                                    >{{ .Name }}</a
+                                >
+                            </li>
+                        {{ end }}
+                    </ul>
+                </aside>
+                <section class="docs-panel">
+                    <header class="panel-header">
+                        <h1>
+                            {{ if isset .Data "Term" }}
+                                {{ .Data.Term | lower }}
+                            {{ else }}
+                                {{ .Name | lower }}
+                            {{ end }}
+                        </h1>
+                        {{- if and (not (isset .Data "Term")) (isset .Site.Params "subtitle") (ne .Section "projects") -}}
+                            <p>{{ .Site.Params.Subtitle | markdownify }}</p>
+                        {{- end -}}
+                        {{ .Content }}
+                    </header>
+                    <div class="posts">
+                        {{- range .Data.Pages -}}
+                            {{- if (in (.Site.Params.excludedTypes | default (slice "page")) .Type) -}}
+                            {{- else -}}
+                                <article class="post-card">
+                                    {{ if ne .Type "project" }}
+                                        <div class="post-meta">
+                                            {{ if hugo.Data.month }}
+                                                {{ index hugo.Data.month (printf "%d" .Date.Month) }}
+                                                {{ .Date.Day }},
+                                                {{ .Date.Year }}
+                                            {{ else }}
+                                                {{ dateFormat "Jan 2, 2006" .Date }}
+                                            {{ end }}
+                                        </div>
+                                    {{ end }}
+                                    <h2 class="post-title">
+                                        <a href="{{ .RelPermalink }}">
+                                            {{ if eq .Type "worklog" }}
+                                                WORKLOG:
+                                            {{ end }}
+                                            {{ .Title }}
+                                            {{ if .Draft }}
+                                                <sup class="text-red-600"
+                                                    >[DRAFT]</sup
+                                                >
+                                            {{ end }}
+                                        </a>
+                                    </h2>
+                                    <p class="post-description">
+                                        {{ if isset .Params "description" }}
+                                            {{ .Description }}
+                                        {{ else if gt (countrunes .RawContent) 140 }}
+                                            {{ slicestr .RawContent 0 140 }}...
+                                        {{ else }}
+                                            {{ .RawContent }}
+                                        {{ end }}
+                                    </p>
+                                    {{ if gt (.Params.tags | default (slice) | len) 0 }}
+                                        <div class="tag-row post-tags">
+                                            {{ range .Params.tags }}
+                                                <a
+                                                    class="tag-pill"
+                                                    href="{{ "/tags/" | relLangURL }}{{ . | urlize }}"
+                                                    >{{ . }}</a
+                                                >
+                                            {{ end }}
+                                        </div>
+                                    {{ end }}
+                                </article>
+                            {{- end -}}
+                        {{- end -}}
+                    </div>
+                </section>
+            </main>
+            {{ partial "footer.html" . }}
+        </div>
+    </body>
 </html>

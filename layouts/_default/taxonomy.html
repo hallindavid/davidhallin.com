@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+    {{ partial "header.html" . }}
+
+
+    <body>
+        <div class="site-shell">
+            {{ partial "nav.html" . }}
+            <main class="site-frame layout-grid">
+                <aside class="docs-sidebar">
+                    <h2 class="sidebar-title">Sections</h2>
+                    <ul class="sidebar-list">
+                        {{ range .Site.Menus.main }}
+                            <li>
+                                <a
+                                    href="{{ .URL }}"
+                                    class="sidebar-link{{ if eq $.RelPermalink .URL }}
+                                        sidebar-link-active
+                                    {{ end }}"
+                                    >{{ .Name }}</a
+                                >
+                            </li>
+                        {{ end }}
+                    </ul>
+                </aside>
+                <section class="docs-panel">
+                    <header class="panel-header">
+                        <h1>{{ .Name | lower }}</h1>
+                        {{ .Content }}
+                    </header>
+                    {{ $data := .Data }}
+                    <div class="posts">
+                        {{ range $key, $value := .Data.Terms.ByCount }}
+                            <article class="post-card">
+                                <h2 class="post-title">
+                                    <a
+                                        href="{{ $.Site.LanguagePrefix | absURL }}{{ $data.Plural }}/{{ $value.Name | urlize }}/"
+                                    >
+                                        {{ $value.Name }}
+                                    </a>
+                                </h2>
+                                <p class="post-description">
+                                    {{ $value.Count }} posts
+                                </p>
+                            </article>
+                        {{ end }}
+                    </div>
+                </section>
+            </main>
+            {{ partial "footer.html" . }}
+        </div>
+    </body>
+</html>

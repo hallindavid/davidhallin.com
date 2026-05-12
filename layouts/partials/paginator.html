@@ -1,35 +1,47 @@
 {{ $pag := $.Paginator }}
 {{ if gt $pag.TotalPages 1 }}
-<div class="pager">
-	<div>
-	{{ if $pag.HasPrev }}
-    <a href="{{ $pag.Prev.URL }}" class="pager-button" aria-label="Previous">
-		<span class="sm:hidden">◀</span>
-		<span class="hidden sm:inline">◀ Previous</span>
-	</a>
-	{{ else }}
-    <span class="pager-button pager-button-disabled">
-		<span class="sm:hidden">◀</span>
-		<span class="hidden sm:inline">◀ Previous</span>
-	</span>
-	{{ end }}
-	</div>
-	<div class="pager-meta">
-		<span class="sm:hidden">{{ $pag.PageNumber }}/{{ $pag.TotalPages }}</span>
-		<span class="hidden sm:inline">Page {{ $pag.PageNumber }} of {{ $pag.TotalPages }}</span>
-	</div>
-	<div>
-	{{ if $pag.HasNext }}
-    <a href="{{ $pag.Next.URL }}" class="pager-button" aria-label="Next">
-		<span class="sm:hidden">▶</span>
-		<span class="hidden sm:inline">Next ▶</span>
-	</a>
-	{{ else }}
-    <span class="pager-button pager-button-disabled">
-		<span class="sm:hidden">▶</span>
-		<span class="hidden sm:inline">Next ▶</span>
-	</span>
-	{{ end }}
-	</div>
-</div>
+    <div class="pager">
+        <div>
+            {{ if $pag.HasPrev }}
+                <a
+                    href="{{ $pag.Prev.URL }}"
+                    class="pager-button"
+                    aria-label="Previous"
+                >
+                    <span class="sm:hidden">◀</span>
+                    <span class="hidden sm:inline">◀ Previous</span>
+                </a>
+            {{ else }}
+                <span class="pager-button pager-button-disabled">
+                    <span class="sm:hidden">◀</span>
+                    <span class="hidden sm:inline">◀ Previous</span>
+                </span>
+            {{ end }}
+        </div>
+        <div class="pager-meta">
+            <span class="sm:hidden"
+                >{{ $pag.PageNumber }}/{{ $pag.TotalPages }}</span
+            >
+            <span class="hidden sm:inline"
+                >Page {{ $pag.PageNumber }} of {{ $pag.TotalPages }}</span
+            >
+        </div>
+        <div>
+            {{ if $pag.HasNext }}
+                <a
+                    href="{{ $pag.Next.URL }}"
+                    class="pager-button"
+                    aria-label="Next"
+                >
+                    <span class="sm:hidden">▶</span>
+                    <span class="hidden sm:inline">Next ▶</span>
+                </a>
+            {{ else }}
+                <span class="pager-button pager-button-disabled">
+                    <span class="sm:hidden">▶</span>
+                    <span class="hidden sm:inline">Next ▶</span>
+                </span>
+            {{ end }}
+        </div>
+    </div>
 {{ end }}

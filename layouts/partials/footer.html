@@ -1,26 +1,29 @@
 <footer class="site-footer">
-	<div class="site-frame footer-inner">
-		<div>
-			{{ dateFormat "2006" now }} {{ with .Site.Copyright }} {{ . | safeHTML }}{{ end }}
-		</div>
-		<div class="flex items-center gap-3">
-			<span>Powered by Hugo</span>
-			<span id="clock" class="clock-pill">--:--</span>
-		</div>
-	</div>
+    <div class="site-frame footer-inner">
+        <div>
+            {{ dateFormat "2006" now }}
+            {{ with .Site.Copyright }}{{ . | safeHTML }}{{ end }}
+        </div>
+        <div class="flex items-center gap-3">
+            <span>Powered by Hugo</span>
+            <span id="clock" class="clock-pill">--:--</span>
+        </div>
+    </div>
 </footer>
 
 <script>
-function updateClock() {
-    const now = new Date();
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    document.getElementById('clock').textContent = `${hours}:${minutes}`;
-}
-updateClock();
-setInterval(updateClock, 1000);
+    function updateClock() {
+        const now = new Date();
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        document.getElementById('clock').textContent = `${hours}:${minutes}`;
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
 </script>
 
 {{- with .Site.Params.Social -}}
-<script>feather.replace()</script>
+    <script>
+        feather.replace();
+    </script>
 {{- end -}}
